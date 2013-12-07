@@ -32,9 +32,6 @@ function __CLASS__(name, obj1, obj2)
 {
     if (obj2 !== undefined)            // New class by heritance
     {
-        // obj1 -> classe de la que heretem
-        // obj2 -> definicio de la nova classe
-        
         if (typeof(obj1) !== "object")
         {
             throw "Extending from a non object";

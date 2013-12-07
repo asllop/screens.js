@@ -64,6 +64,23 @@ And use it on a simple **index.html** file:
 		</body>
 	</html>
 
+Inheritance works in a similar way, creating **AnotherClass.js**:
+
+	__CLASS__('AnotherClass', NewClass,
+	{
+		Init: function()
+		{
+			console.log("Init AnotherClass");
+		},
+		
+		anotherFoo: function(name)
+		{
+			console.log("Another " + this.salute + " " + name);
+		}
+	});
+
+The resulting class contains all methodes and propierties of the original NewClass plus the AnotherClass ones. The methodes and propierties with the same name are overwritten.
+
 ### 2. Model View Controller
 
 TODO
