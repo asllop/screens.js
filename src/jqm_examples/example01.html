@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+        
+        <script src="../screens.js"></script>
+        
+        <!-- Load classes we will use -->
+        <script src="Page1Screen.js"></script>
+        <script src="Page2Screen.js"></script>
+        
+        <script>
+            $(document).ready(function()
+            {
+            	// Show first screen
+                Screen.PushPage(Screen.JQMLoader, 'page1', Page1Screen)
+            });
+        </script>
+        
+    </head>
+    <body>
+        <div data-role="page" id="page0">
+            <div data-role="content">
+                <!-- Empty main page, never shown -->
+            </div>
+        </div>
+        
+        <div data-role="page" id="page1">
+            <div data-role="header">
+                <h1 id="title">Page 1</h1>
+            </div>
+            <div data-role="content">
+                <a href="http://www.google.com">Google.com</a>
+                <button id="button">Go to Page 2</button>
+            </div>
+        </div>
+        
+        <div data-role="page" id="page2">
+            <div data-role="header">
+                <h1 id="title">Page 2</h1>
+            </div>
+            <div data-role="content">
+                <a href="http://www.yahoo.com">Yahoo.com</a>
+                <button id="button">Back to Page 1</button>
+            </div>
+        </div>
+    </body>
+</html>
