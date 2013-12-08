@@ -1,5 +1,5 @@
 /* 
- * ScreensJS - v0.9b
+ * Screens.js - v0.9b
  * Copyright (C) 2013 Andreu Santaren Llop
  */
 
@@ -22,7 +22,6 @@
     };
     
     window.BROADCAST_REGISTER_ARRAY = new Array();
-    
     window.SCREEN_CLASS_STACK = new Array();
     window.SCREEN_HTML_LIST = new Object();
 }
@@ -573,7 +572,7 @@ function __CHANGE__(obj, delegate, selector)
 // Set checkbox/radio click event delegate
 function __CHECKER_CLICK__(obj, delegate, selector, type)
 {
-    __REF__(obj, selector).on('click', 'input[type=' + type + ']', function()
+	__REF__(obj, selector).find('input[type=' + type + ']').on('click', function()
     {
         $.proxy(delegate, obj)(this);
     });

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+        
+        <script src="../screens.js"></script>
+        
+        <!-- Load classes we will use -->
+        <script src="classes/Events1Screen.js"></script>
+        
+        <script>
+            $(document).ready(function()
+            {
+            	// Show first screen
+                Screen.PushPage(Screen.JQMLoader, 'eventspage1', Events1Screen)
+            });
+        </script>
+        
+    </head>
+    <body>
+        <div data-role="page" id="page0">
+            <div data-role="content">
+                <!-- Empty main page, never shown -->
+            </div>
+        </div>
+        
+        <div data-role="page" id="eventspage1">
+            <div data-role="header">
+                <h1 id="title">Events Page 1</h1>
+            </div>
+            <div data-role="content">
+                <button id="button">Button</button>
+                <input type="text" id="input" value="" placeholder="Text"/>
+                <ul data-inset="true" data-role="listview" id="list">
+	                <li>Element 1</li>
+	                <li>Element 2</li>
+	                <li>Element 3</li>
+	                <li>Element 4</li>
+				</ul>
+				<div id="checkbox">
+					<fieldset data-role="controlgroup">
+		                <input type="checkbox" name="check-choice-1-import" id="check-choice-1-import" value="0" >
+		                <label for="check-choice-1-import">Check 1</label>
+		
+		                <input type="checkbox" name="check-choice-2-import" id="check-choice-2-import" value="1" >
+		                <label for="check-choice-2-import">Check 2</label>
+		
+		                <input type="checkbox" name="check-choice-3-import" id="check-choice-3-import" value="2" >
+		                <label for="check-choice-3-import">Check 3</label>
+		
+		                <input type="checkbox" name="check-choice-4-import" id="check-choice-4-import" value="3" >
+		                <label for="check-choice-4-import">Check 4</label>
+	                </fieldset>
+	            </div>
+	            <div id="radio">
+					<fieldset data-role="controlgroup">
+					     	<input type="radio" name="radio-choice" id="radio-choice-1" value="0" checked="checked" />
+					     	<label for="radio-choice-1">Radio 1</label>
+					
+					     	<input type="radio" name="radio-choice" id="radio-choice-2" value="1"  />
+					     	<label for="radio-choice-2">Radio 2</label>
+					
+					     	<input type="radio" name="radio-choice" id="radio-choice-3" value="2"  />
+					     	<label for="radio-choice-3">Radio 3</label>
+					
+					     	<input type="radio" name="radio-choice" id="radio-choice-4" value="3"  />
+					     	<label for="radio-choice-4">Radio 4</label>
+					</fieldset>
+	            </div>
+				<select id="select">
+	                <option value="0">Selector 1</option>
+	                <option value="1">Selector 2</option>
+	                <option value="2">Selector 3</option>
+	                <option value="3">Selector 4</option>
+				</select>
+            </div>
+        </div>
+    </body>
+</html>

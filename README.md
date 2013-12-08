@@ -1,7 +1,6 @@
-Screens.js
-==========
+# Screens.js
 
-Real OOP, MVC and Messaging for Javascript.
+*Real OOP, MVC and Messaging for Javascript.*
 
 ### Overview
 
@@ -20,15 +19,15 @@ To create a new class just write a **NewClass.js** file like it:
 	__CLASS__('NewClass',
 	{
 		salute: "Hi",
-		
+
 		Init: function()
 		{
-			console.log("Init NewClass");
+			alert("NewClass constructor");
 		},
 		
 		foo: function(name)
 		{
-			console.log(this.salute + " " + name);
+			alert(this.salute + " " + name);
 		}
 	});
 
@@ -70,16 +69,16 @@ Inheritance works in a similar way, creating **AnotherClass.js**:
 	{
 		Init: function()
 		{
-			console.log("Init AnotherClass");
+			alert("AnotherClass constructor");
 		},
 		
 		anotherFoo: function(name)
 		{
-			console.log("Another " + this.salute + " " + name);
+			alert("Another " + this.salute + " " + name);
 		}
 	});
 
-The resulting class contains all methodes and propierties of the original NewClass plus the AnotherClass ones. The methodes and propierties with the same name are overwritten.
+The resulting class contains all methodes and propierties of the original NewClass plus the AnotherClass ones. The methodes and propierties with the same name are overwritten, in this case, the constructor.
 
 ### 2. Model View Controller
 
