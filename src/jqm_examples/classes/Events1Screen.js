@@ -27,14 +27,14 @@ __CLASS__('Events1Screen', Screen,
 	},
 	
 	checkboxClick: function(sender)
-    {
-        alert("Checker click on = " + $(sender).val());
-    },
+	{
+		alert("Checker click on = " + $(sender).val());
+	},
     
-   	radioClick: function(sender)
-    {
-        alert("Radio click on = " + $(sender).val());
-    },
+	radioClick: function(sender)
+	{
+		alert("Radio click on = " + $(sender).val());
+	},
     
 	selectChange: function(sender)
 	{

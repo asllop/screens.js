@@ -13,6 +13,7 @@
         <!-- Load classes we will use -->
         <script src="classes/Page1Screen.js"></script>
         <script src="classes/Page2Screen.js"></script>
+        <script src="classes/Page3Screen.js"></script>
         
         <script>
             $(document).ready(function()
@@ -46,7 +47,18 @@
             </div>
             <div data-role="content">
                 <a href="http://www.yahoo.com">Yahoo.com</a>
-                <button id="button">Back to Page 1</button>
+                <button id="button">Go to Page 3</button>
+                <button id="buttonBack">Back to Page 1</button>
+            </div>
+        </div>
+        
+        <div data-role="page" id="page3">
+            <div data-role="header">
+                <h1 id="title">Page 3</h1>
+            </div>
+            <div data-role="content">
+                <a href="http://www.cnn.com">CNN.com</a>
+                <button id="button">Back to Page 2</button>
             </div>
         </div>
     </body>
