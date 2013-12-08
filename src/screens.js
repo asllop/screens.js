@@ -6,7 +6,8 @@
 /*
  * TODO:
  * 
- * -    Create backends (loader) for Bootstrap and JQuery UI.
+ * 	- Create backends (loader) for Bootstrap and JQuery UI.
+ *	- Create a generalized system to allow Push/PopScreen to work with different backends.
  */
 
 // Init ScreensJS library
@@ -99,34 +100,19 @@ __CLASS__('Screen',
         screen.OnClose();
     },
     
-    PushPage: function(loader, pageid, screen)
+    PushScreen: function(loader, pageid, screen)
     {
-        __PUSH_PAGE__(loader, pageid, screen);
+        __PUSH_SCREEN__(loader, pageid, screen);
     },
             
-    PopPage: function(retdata)
+    PopScreen: function(retdata)
     {
-        __POP_PAGE__(retdata);
+        __POP_SCREEN__(retdata);
     },
             
     JQMLoader: function(pageid)
     {
         __JQM_LOADER__(pageid);
-    },
-            
-    LoadScreen: function(name, baseurl, readyCallBack, code)
-    {
-        __LOAD_SCREEN__(name, baseurl, this, readyCallBack, code);
-    },
-            
-    PushScreen: function(name, baseurl)
-    {
-        __PUSH_SCREEN__(name, baseurl);
-    },
-
-    PopScreen: function(retdata)
-    {
-        __POP_SCREEN__(retdata);
     },
 
     LoadClass: function(name, baseurl, readyCallBack)
@@ -282,7 +268,7 @@ function __DESERIALIZE__(obj)
     return copy;
 }
 
-function __PUSH_PAGE__(loader, pageid, screen)
+function __PUSH_SCREEN__(loader, selector, screen)
 {
     var name = screen.CLASS_NAME;
     
@@ -291,18 +277,18 @@ function __PUSH_PAGE__(loader, pageid, screen)
     var screenJS = eval(callname);
 
     // Add classes to new page
-    $('#' + pageid).addClass(name);
-    $('#' + pageid).find('*').addClass(name);
-    $('#' + pageid).find('*').addClass(screenJS.OBJECT_UNIQUE_KEY);
+    $(selector).addClass(name);
+    $(selector).find('*').addClass(name);
+    $(selector).find('*').addClass(screenJS.OBJECT_UNIQUE_KEY);
 
-    loader(pageid);         // execute loader callback
+    loader(selector);    	// execute loader callback
     screenJS.OnLoad();      // Screen OnLoad methode
     
     // Add screen to stack
-    window.SCREEN_CLASS_STACK.push({screen: screenJS, baseurl: '#' + pageid, loader: loader});
+    window.SCREEN_CLASS_STACK.push({screen: screenJS, baseurl: selector, loader: loader});
 }
 
-function __POP_PAGE__(retdata)
+function __POP_SCREEN__(retdata)
 {
     // It is the main screen, no one in the back
     if (window.SCREEN_CLASS_STACK.length <= 1)
@@ -317,16 +303,16 @@ function __POP_PAGE__(retdata)
     // Get de previus screen object
     var stackObj = window.SCREEN_CLASS_STACK.last();
     
-    var pageid = stackObj.baseurl.substring(1);
-    var lastPageId = lastScreen.baseurl.substring(1);
+    var pageSelector = stackObj.baseurl;
+    var lastPageSelector = lastScreen.baseurl;
     
     // Remove last page events and classes
-    $('#' + lastPageId).add("*").off();
-    $('#' + lastPageId).removeClass(lastScreen.screen.CLASS_NAME);
-    $('#' + lastPageId).find('*').removeClass(lastScreen.screen.CLASS_NAME);
-    $('#' + lastPageId).find('*').removeClass(lastScreen.screen.OBJECT_UNIQUE_KEY);
+    $(lastPageSelector).add("*").off();
+    $(lastPageSelector).removeClass(lastScreen.screen.CLASS_NAME);
+    $(lastPageSelector).find('*').removeClass(lastScreen.screen.CLASS_NAME);
+    $(lastPageSelector).find('*').removeClass(lastScreen.screen.OBJECT_UNIQUE_KEY);
     
-    stackObj.loader(pageid);
+    stackObj.loader(pageSelector);
     stackObj.screen.OnLoad();      // Screen OnLoad methode
 
     // Call the return function
@@ -336,11 +322,12 @@ function __POP_PAGE__(retdata)
     }
 }
 
-function __JQM_LOADER__(pageid)
+function __JQM_LOADER__(pageSelector)
 {
-    $.mobile.changePage('#' + pageid);
+    $.mobile.changePage(pageSelector);
 }
 
+/*
 // Load Screen
 function __LOAD_SCREEN__(name, baseurl, obj, readyCallBack, code)
 {
@@ -503,6 +490,7 @@ function __POP_SCREEN__(retdata)
         stackObj.screen.OnReturn(retdata);
     }
 }
+*/
 
 // Load a class
 function __LOAD_CLASS__(name, baseurl, obj, readyCallBack)
