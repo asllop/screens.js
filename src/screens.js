@@ -23,8 +23,7 @@
     };
     
     window.BROADCAST_REGISTER_ARRAY = new Array();
-    window.SCREEN_CLASS_STACK = new Array();
-    window.SCREEN_HTML_LIST = new Object();
+    window.SCREEN_STACK = new Array();
 }
 
 // Create a class
@@ -285,23 +284,23 @@ function __PUSH_SCREEN__(loader, selector, screen)
     screenJS.OnLoad();      // Screen OnLoad methode
     
     // Add screen to stack
-    window.SCREEN_CLASS_STACK.push({screen: screenJS, baseurl: selector, loader: loader});
+    window.SCREEN_STACK.push({screen: screenJS, baseurl: selector, loader: loader});
 }
 
 function __POP_SCREEN__(retdata)
 {
     // It is the main screen, no one in the back
-    if (window.SCREEN_CLASS_STACK.length <= 1)
+    if (window.SCREEN_STACK.length <= 1)
     {
         return;
     }
     
     // Close the current screen
-    var lastScreen = window.SCREEN_CLASS_STACK.pop();
+    var lastScreen = window.SCREEN_STACK.pop();
     lastScreen.screen.OnClose();
 
     // Get de previus screen object
-    var stackObj = window.SCREEN_CLASS_STACK.last();
+    var stackObj = window.SCREEN_STACK.last();
     
     var pageSelector = stackObj.baseurl;
     var lastPageSelector = lastScreen.baseurl;
@@ -326,171 +325,6 @@ function __JQM_LOADER__(pageSelector)
 {
     $.mobile.changePage(pageSelector);
 }
-
-/*
-// Load Screen
-function __LOAD_SCREEN__(name, baseurl, obj, readyCallBack, code)
-{
-    jQuery.ajaxSetup({async:false});
-    
-    var htmlurl = baseurl + "/" + name + ".html";
-    var jsurl = baseurl + "/" + name + ".js";
-    
-    if (typeof(window[name]) !== 'undefined')        // Screen already loaded
-    {
-        // Get the hml from the cache list
-        var html = window.SCREEN_HTML_LIST[name];
-        var screenHtml = $('<div/>').html(html).find(".SCREEN_CONTAINER" + "#" + name);
-        screenHtml.find('*').addClass(name);
-        
-        var callname = name + '.New()';
-        var screenJS = eval(callname);
-
-        screenHtml.find('*').addClass(screenJS.OBJECT_UNIQUE_KEY);
-        
-        // Run the callback
-        $.proxy(readyCallBack, obj)(screenHtml.html(), screenJS, code);
-                
-        screenJS.OnLoad();
-    }
-    else                                            // Screen Not loade yet
-    {
-        // Load HTML
-        $.get(htmlurl, function(html)
-        {
-            window.SCREEN_HTML_LIST[name] = html;
-            
-            // Extract the screen container
-            var screenHtml = $('<div/>').html(html).find(".SCREEN_CONTAINER" + "#" + name);
-            screenHtml.find('*').addClass(name);
-
-            // Load JS
-            $.getScript(jsurl, function(data, textStatus, jqxhr)
-            {
-                // Create an instance of screen
-                var callname = name + '.New()';
-                var screenJS = eval(callname);
-
-                screenHtml.find('*').addClass(screenJS.OBJECT_UNIQUE_KEY);
-
-                // Run the callback
-                $.proxy(readyCallBack, obj)(screenHtml.html(), screenJS, code);
-
-                screenJS.OnLoad();
-            });
-        });
-    }
-    
-    jQuery.ajaxSetup({async:true});
-}
-
-// Push a Screen in the stack and show in body
-function __PUSH_SCREEN__(name, baseurl)
-{
-    // Check for an existing screen ot be closed
-    if (window.SCREEN_CLASS_STACK.length > 0)
-    {
-        var lastScreen = window.SCREEN_CLASS_STACK.last();
-        lastScreen.screen.OnClose();
-    }
-        
-    var destelement = $('body');
-
-    if (typeof(window[name]) !== 'undefined')        // Screen already loaded
-    {
-        // Show HTML in the body
-        var html = window.SCREEN_HTML_LIST[name];
-        var screenHtml = $('<div/>').html(html).find(".SCREEN_CONTAINER" + "#" + name);
-        screenHtml.find('*').addClass(name);
-        
-        // Create an instance of screen class and save it in the stack
-        var callname = name + '.New()';
-        var screenJS = eval(callname);
-        
-        screenHtml.find('*').addClass(screenJS.OBJECT_UNIQUE_KEY);
-        destelement.html(screenHtml.html());
-        
-        screenJS.OnLoad();
-        
-        window.SCREEN_CLASS_STACK.push({screen: screenJS, baseurl: baseurl});
-    }
-    else                                            // Screen not loaded yet
-    {
-        var htmlurl = baseurl + "/" + name + ".html";
-    
-        // Load HTML
-        $.get(htmlurl, function(html)
-        {
-            window.SCREEN_HTML_LIST[name] = html;
-                        
-            // Show HTML in the body
-            var screenHtml = $('<div/>').html(html).find(".SCREEN_CONTAINER" + "#" + name);
-            screenHtml.find('*').addClass(name);
-
-            var jsurl = baseurl + "/" + name + ".js";
-
-            // Load JS
-            $.getScript(jsurl, function(data, textStatus, jqxhr)
-            {
-                // Create an instance of screen class and save it in the stack
-                var callname = name + '.New()';
-                var screenJS = eval(callname);
-                
-                screenHtml.find('*').addClass(screenJS.OBJECT_UNIQUE_KEY);
-                destelement.html(screenHtml.html());
-        
-                screenJS.OnLoad();
-
-                window.SCREEN_CLASS_STACK.push({screen: screenJS, baseurl: baseurl});
-            });
-        });
-    }
-}
-
-// Pop a Screen from the stack and show in body
-function __POP_SCREEN__(retdata)
-{
-    // It is the main screen, no one in the back
-    if (window.SCREEN_CLASS_STACK.length <= 1)
-    {
-        return;
-    }
-    
-    // Close the current screen
-    var lastScreen = window.SCREEN_CLASS_STACK.last();
-    lastScreen.screen.OnClose();
-        
-    var destelement = $('body');
-    
-    // Remove the current screen object
-    window.SCREEN_CLASS_STACK.pop();
-
-    // Get de previus screen object
-    var stackObj = window.SCREEN_CLASS_STACK.last();
-    
-    var name = stackObj.screen.CLASS_NAME;
-    var key = stackObj.screen.OBJECT_UNIQUE_KEY;
-
-    // Get previous screen html
-    var html = window.SCREEN_HTML_LIST[name];
-    
-    // Show HTML in the body
-    var screenHtml = $('<div/>').html(html).find(".SCREEN_CONTAINER" + "#" + name);
-    screenHtml.find('*').addClass(name);
-    screenHtml.find('*').addClass(key);
-    
-    destelement.html(screenHtml.html());
-    
-    // Init screen object
-    stackObj.screen.OnLoad();
-    
-    // Call the return function
-    if (retdata !== null)
-    {
-        stackObj.screen.OnReturn(retdata);
-    }
-}
-*/
 
 // Load a class
 function __LOAD_CLASS__(name, baseurl, obj, readyCallBack)
