@@ -134,7 +134,86 @@ Now the Screen class, **BasicScreen.js**:
 
 ### 3. Messaging
 
-TODO
+The messaging system allows objects to communicate to each others without the need to have a reference to the object itself.
+
+Let's see the **ReceiverScreen.js**:
+
+	__CLASS__('ReceiverScreen', Screen,
+	{
+		receiver: null,
+		
+		OnLoad: function()
+		{
+			this.receiver = this.RegisterReceiver(this.broadcastReceiver, 'MYFILTER');
+		},
+		
+		OnClose: function()
+	    {
+        	this.UnregisterReceiver(this.receiver);
+    	},
+    	
+		broadcastReceiver: function(message)
+		{
+			alert('Message received = ' + message);
+    	    return true;       // halt broadcast (if it is ordered)
+	    }
+	});
+
+The **SenderScreen.js**:
+
+	__CLASS__('SenderScreen', Screen,
+	{
+		OnLoad: function()
+		{
+			this.Click(this.buttonClick, '#myButton');
+		},
+		
+		buttonClick: function(sender)
+		{
+			this.SendOrderedBroadcast('MYFILTER', 'Helo World!');
+		}
+	});
+
+And the **index.html**:
+
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<!-- JQuery is needed -->
+        	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+	        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    	    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+        			
+			<!-- Screens.js library -->
+			<script src="screens.js"></script>
+		
+			<!-- Load classes we will use -->
+			<script src="ReceiverScreen.js"></script>
+			<script src="SenderScreen.js"></script>
+		
+			<script>
+				$(document).ready(function()
+				{
+					Screen.PushScreen(Screen.JQMLoader, '#page0', ReceiverScreen);
+					Screen.PushScreen(Screen.JQMLoader, '#senderpage', SenderScreen);
+				});
+			</script>
+		
+		</head>
+		<body>
+			<div data-role="page" id="page0">
+            	<div data-role="content">
+	            </div>
+    	    </div>
+			<div data-role="page" id="senderpage">
+            	<div data-role="content">
+                	<button id="myButton">Send Message</button>
+	            </div>
+    	    </div>
+		</body>
+	</html>
+
+Using a SendBroadcast instead of a SendOrderedBriadcast will result in a massive message broadcasting to all receivers matching the filter.
 
 ### 4. Examples
 
@@ -155,3 +234,7 @@ Event handling.
 #### jqm_examples/example03.html
 
 Dynamic html, lists.
+
+#### jqm_examples/example04.html
+
+Message broadcasting.
