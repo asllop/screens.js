@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+        
+        <script src="../screens.js"></script>
+        
+        <!-- Load classes we will use -->
+        <script src="classes/DynamicListScreen.js"></script>
+        
+        <script>
+            $(document).ready(function()
+            {
+            	// Show first screen
+                Screen.PushScreen(Screen.JQMLoader, '#listpage', DynamicListScreen)
+            });
+        </script>
+        
+    </head>
+    <body>
+        <div data-role="page" id="listpage">
+            <div data-role="header">
+                <h1 id="title">Dynamic List</h1>
+            </div>
+            <div data-role="content">
+                <button id="button">Add element</button>
+                <div id='listContainer'>
+	                <!-- Place for the list -->
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

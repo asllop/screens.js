@@ -8,6 +8,8 @@
  * 
  * 	- Create backends (loader) for Bootstrap and JQuery UI.
  *	- Create a generalized system to allow Push/PopScreen to work with different backends.
+ *	- Modify classes of dom elements when insert.
+ *	- Modify events of dom elements when insert.
  */
 
 // Init ScreensJS library
@@ -99,19 +101,24 @@ __CLASS__('Screen',
         screen.OnClose();
     },
     
-    PushScreen: function(loader, pageid, screen)
+    PushScreen: function(loader, selector, screen)
     {
-        __PUSH_SCREEN__(loader, pageid, screen);
+        __PUSH_SCREEN__(loader, selector, screen);
     },
-            
+    
     PopScreen: function(retdata)
     {
         __POP_SCREEN__(retdata);
     },
-            
-    JQMLoader: function(pageid)
+    
+    JQMLoader: function(pageSelector)
     {
-        __JQM_LOADER__(pageid);
+        __JQM_LOADER__(pageSelector);
+    },
+    
+    SetHtml: function(selector, html)
+    {
+	    __SET_HTML__(this, __REF__(this, selector), html);
     },
 
     LoadClass: function(name, baseurl, readyCallBack)
@@ -324,6 +331,14 @@ function __POP_SCREEN__(retdata)
 function __JQM_LOADER__(pageSelector)
 {
     $.mobile.changePage(pageSelector);
+}
+
+// Insert HTML in the DOM and update screen classes
+function __SET_HTML__(screen, selector, html)
+{
+	$(selector).html(html);
+    $(selector).find('*').addClass(screen.CLASS_NAME);
+    $(selector).find('*').addClass(screen.OBJECT_UNIQUE_KEY);
 }
 
 // Load a class
