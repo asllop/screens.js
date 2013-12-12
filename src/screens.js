@@ -78,6 +78,11 @@ function __CLASS__(name, obj1, obj2)
 // Base class
 __CLASS__('SCRObject',
 {
+    Clone: function(obj)
+    {
+        return __CLONE__(obj);
+    },
+    
 	Serialize: function(obj)
 	{
 		return __SERIALIZE__(obj);
@@ -274,7 +279,7 @@ function __DESERIALIZE__(obj)
     
     if (typeof(copy.OBJ_FOO_NAMES) !== 'object')
     {
-        throw 'Not a valid serialized CLASS object';
+        throw 'Not a valid serialized object';
     }
     
     // Take function string and evaluate to obtain the originals
