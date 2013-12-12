@@ -1,4 +1,3 @@
-- Change screen class by screen attribute (easier to read).
 - Modify classes of dom elements when insert.
 - Modify events of dom elements when insert.
 - Create a system to insert subscreens, using loader for different backends.

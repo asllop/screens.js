@@ -109,7 +109,7 @@ __CLASS__('Screen',
     
     SetHtml: function(selector, html)
     {
-	    __SET_HTML__(this, __REF__(this, selector), html);
+	    __SET_HTML__(this, selector, html);
     },
 
     LoadClass: function(name, baseurl, readyCallBack)
@@ -273,13 +273,7 @@ function __PUSH_SCREEN__(loader, selector, screen)
     var callname = name + '.New()';
     var screenObj = eval(callname);
 
-    // Add classes to new page
     __BRAND__(selector, screenObj);
-    /*
-    $(selector).addClass(name);
-    $(selector).find('*').addClass(name);
-    $(selector).find('*').addClass(screenObj.OBJECT_UNIQUE_KEY);
-    */
 
     loader(selector);    	// execute loader callback
     screenObj.OnLoad();      // Screen OnLoad methode
@@ -310,12 +304,7 @@ function __POP_SCREEN__(retdata)
     $(lastPageSelector).add("*").off();
     
     __UNBRAND__(lastScreen.screen);
-    /*
-    $(lastPageSelector).removeClass(lastScreen.screen.CLASS_NAME);
-    $(lastPageSelector).find('*').removeClass(lastScreen.screen.CLASS_NAME);
-    $(lastPageSelector).find('*').removeClass(lastScreen.screen.OBJECT_UNIQUE_KEY);
-    */
-    
+
     stackObj.loader(pageSelector);
     stackObj.screen.OnLoad();      // Screen OnLoad methode
 
@@ -334,9 +323,7 @@ function __JQM_LOADER__(pageSelector)
 // Insert HTML in the DOM and update screen classes
 function __SET_HTML__(screen, selector, html)
 {
-	$(selector).html(html);
-    //$(selector).find('*').addClass(screen.CLASS_NAME);
-    //$(selector).find('*').addClass(screen.OBJECT_UNIQUE_KEY);
+	__REF__(screen, selector).html(html);
     __BRAND__(selector, screen);
 }
 
@@ -399,10 +386,6 @@ function __REF__(obj, selector)
     			selector
     		);
 }
-
-//
-// TODO: remove the use of __REF__ and move it to the place where we call event functions
-//
 
 // Set click event delegate
 function __CLICK__(obj, delegate, selector)
