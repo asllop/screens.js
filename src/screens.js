@@ -271,18 +271,21 @@ function __PUSH_SCREEN__(loader, selector, screen)
     
     // Create an instance of screen class and save it in the stack
     var callname = name + '.New()';
-    var screenJS = eval(callname);
+    var screenObj = eval(callname);
 
     // Add classes to new page
+    __BRAND__(selector, screenObj);
+    /*
     $(selector).addClass(name);
     $(selector).find('*').addClass(name);
-    $(selector).find('*').addClass(screenJS.OBJECT_UNIQUE_KEY);
+    $(selector).find('*').addClass(screenObj.OBJECT_UNIQUE_KEY);
+    */
 
     loader(selector);    	// execute loader callback
-    screenJS.OnLoad();      // Screen OnLoad methode
+    screenObj.OnLoad();      // Screen OnLoad methode
     
     // Add screen to stack
-    window.SCREEN_STACK.push({screen: screenJS, baseurl: selector, loader: loader});
+    window.SCREEN_STACK.push({screen: screenObj, baseurl: selector, loader: loader});
 }
 
 function __POP_SCREEN__(retdata)
@@ -303,11 +306,15 @@ function __POP_SCREEN__(retdata)
     var pageSelector = stackObj.baseurl;
     var lastPageSelector = lastScreen.baseurl;
     
-    // Remove last page events and classes
+    // Disable all events
     $(lastPageSelector).add("*").off();
+    
+    __UNBRAND__(lastScreen.screen);
+    /*
     $(lastPageSelector).removeClass(lastScreen.screen.CLASS_NAME);
     $(lastPageSelector).find('*').removeClass(lastScreen.screen.CLASS_NAME);
     $(lastPageSelector).find('*').removeClass(lastScreen.screen.OBJECT_UNIQUE_KEY);
+    */
     
     stackObj.loader(pageSelector);
     stackObj.screen.OnLoad();      // Screen OnLoad methode
@@ -328,8 +335,27 @@ function __JQM_LOADER__(pageSelector)
 function __SET_HTML__(screen, selector, html)
 {
 	$(selector).html(html);
-    $(selector).find('*').addClass(screen.CLASS_NAME);
-    $(selector).find('*').addClass(screen.OBJECT_UNIQUE_KEY);
+    //$(selector).find('*').addClass(screen.CLASS_NAME);
+    //$(selector).find('*').addClass(screen.OBJECT_UNIQUE_KEY);
+    __BRAND__(selector, screen);
+}
+
+// Set the Screens brand for a piece of DOM
+function __BRAND__(selector, screen)
+{
+	$(selector).attr('screensclass', screen.CLASS_NAME);
+    $(selector).attr('screensid', screen.OBJECT_UNIQUE_KEY);
+	$(selector).find('*').attr('screensclass', screen.CLASS_NAME);
+    $(selector).find('*').attr('screensid', screen.OBJECT_UNIQUE_KEY);
+}
+
+// Remove the Screens brand
+function __UNBRAND__(selector)
+{
+	$(selector).removeAttr('screensclass');
+    $(selector).removeAttr('screensid');
+	$(selector).find('*').removeAttr('screensclass');
+    $(selector).find('*').removeAttr('screensid');
 }
 
 // Load a class
@@ -367,8 +393,16 @@ function __CALLBACK__(obj, callback)
 // Get an element of a screen by a selector
 function __REF__(obj, selector)
 {
-    return $(selector + '.' + obj.CLASS_NAME + '.' + obj.OBJECT_UNIQUE_KEY);
+    return $(
+    			"[screensclass='" + obj.CLASS_NAME + "']" +
+    			"[screensid='" + obj.OBJECT_UNIQUE_KEY + "']" +
+    			selector
+    		);
 }
+
+//
+// TODO: remove the use of __REF__ and move it to the place where we call event functions
+//
 
 // Set click event delegate
 function __CLICK__(obj, delegate, selector)
