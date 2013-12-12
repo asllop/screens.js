@@ -98,6 +98,11 @@ __CLASS__('SCRObject',
         return __LOAD_CLASS__(name, baseurl, this, readyCallBack);
     },
     
+    UnloadClass: function(classname)
+    {
+        return delete window[classname];
+    },
+    
 	RegisterReceiver: function(delegate, filter)
     {
         return __REGISTER_RECEIVER__(this, delegate, filter);
@@ -226,11 +231,6 @@ __CLASS__('Screen', SCRObject,
         __MOUSE_MOVE__(this, delegate, selector);
     }
 });
-
-function __SCREEN__(name, obj)
-{
-    return __CLASS__(name, Screen, obj);
-}
 
 // Clone an object
 function __CLONE__(obj)
