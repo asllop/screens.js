@@ -3,16 +3,6 @@
  * Copyright (C) 2013 Andreu Santaren Llop
  */
 
-/*
- * TODO:
- * 
- *	- Change screen class by screen attribute (easier to read).
- * 	- Create backends (loader) for Bootstrap and JQuery UI.
- *	- Create a generalized system to allow Push/PopScreen to work with different backends.
- *	- Modify classes of dom elements when insert.
- *	- Modify events of dom elements when insert.
- */
-
 // Init ScreensJS library
 {
     Array.prototype.last = function()
