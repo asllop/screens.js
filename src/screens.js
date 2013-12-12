@@ -376,14 +376,24 @@ function __LOAD_CLASS__(name, baseurl, obj, readyCallBack)
 
     if (typeof(window[name]) === 'undefined')
     {
-        jQuery.ajaxSetup({async:false});
-        
-        // Load JavaScript class
-        $.getScript(jsurl, $.proxy(readyCallBack, obj));
-        
-        jQuery.ajaxSetup({async:true});
-        
-        return true;
+        if (readyCallBack == 'undefined')
+        {
+            jQuery.ajaxSetup({async:false});
+            
+            // Load JavaScript class
+            $.getScript(jsurl);
+            
+            jQuery.ajaxSetup({async:true});
+            
+            return true;            
+        }
+        else
+        {
+            // Load JavaScript class
+            $.getScript(jsurl, $.proxy(readyCallBack, obj));
+            
+            return true;  
+        }
     }
     else
     {
