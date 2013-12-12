@@ -75,8 +75,47 @@ function __CLASS__(name, obj1, obj2)
     }
 }
 
+// Base class
+__CLASS__('SCRObject',
+{
+	Serialize: function(obj)
+	{
+		return __SERIALIZE__(obj);
+	},
+
+	Deserialize: function(obj)
+	{
+		return __DESERIALIZE__(obj);
+	},
+	
+    LoadClass: function(name, baseurl, readyCallBack)
+    {
+        return __LOAD_CLASS__(name, baseurl, this, readyCallBack);
+    },
+    
+	RegisterReceiver: function(delegate, filter)
+    {
+        return __REGISTER_RECEIVER__(this, delegate, filter);
+    },
+            
+    UnregisterReceiver: function(receiver)
+    {
+        __UNREGISTER_RECEIVER__(receiver);
+    },
+            
+    SendOrderedBroadcast: function(filter, message)
+    {
+        __SEND_BROADCAST__(filter, message, false);
+    },
+            
+    SendBroadcast: function(filter, message)
+    {
+        __SEND_BROADCAST__(filter, message, true);
+    }
+});
+
 // Base class for screens
-__CLASS__('Screen',
+__CLASS__('Screen', SCRObject,
 {
     OnLoad: function()
     {},
@@ -111,10 +150,15 @@ __CLASS__('Screen',
     {
 	    __SET_HTML__(this, selector, html);
     },
-
-    LoadClass: function(name, baseurl, readyCallBack)
+    
+    Brand: function(selector)
     {
-        return __LOAD_CLASS__(name, baseurl, this, readyCallBack);
+	    __BRAND__(seletor, this);
+    },
+    
+    Unbrand: function(selector)
+    {
+	    __UNBRAND__(selector);
     },
             
     Callback: function(callback)
@@ -175,26 +219,6 @@ __CLASS__('Screen',
     MouseMove: function(delegate, selector)
     {
         __MOUSE_MOVE__(this, delegate, selector);
-    },
-            
-    RegisterReceiver: function(delegate, filter)
-    {
-        return __REGISTER_RECEIVER__(this, delegate, filter);
-    },
-            
-    UnregisterReceiver: function(receiver)
-    {
-        __UNREGISTER_RECEIVER__(receiver);
-    },
-            
-    SendOrderedBroadcast: function(filter, message)
-    {
-        __SEND_BROADCAST__(filter, message, false);
-    },
-            
-    SendBroadcast: function(filter, message)
-    {
-        __SEND_BROADCAST__(filter, message, true);
     }
 });
 

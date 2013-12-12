@@ -30,7 +30,7 @@ To create a new class just write a **NewClass.js** file like it:
 		{
 			alert(this.salute + " " + name);
 		}
-	});
+	});		
 
 And use it on a simple **index.html** file:
 
