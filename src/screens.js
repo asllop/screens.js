@@ -6,6 +6,7 @@
 /*
  * TODO:
  * 
+ *	- Change screen class by screen attribute (easier to read).
  * 	- Create backends (loader) for Bootstrap and JQuery UI.
  *	- Create a generalized system to allow Push/PopScreen to work with different backends.
  *	- Modify classes of dom elements when insert.

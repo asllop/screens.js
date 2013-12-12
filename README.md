@@ -11,7 +11,7 @@ Screens.js is a Javascript library that offers full featured Object Oriented Pro
 1. Object Oriented Programming
 2. Model View Controller
 3. Messaging
-4. Examples
+4. Learn By Examples
 
 ### 1. Object Oriented Programming
 
@@ -215,7 +215,7 @@ And the **index.html**:
 
 Using a SendBroadcast instead of a SendOrderedBriadcast will result in a massive message broadcasting to all receivers matching the filter.
 
-### 4. Examples
+### 4. Learn By Examples
 
 You can find the examples inside the **src** directory.
 
@@ -238,3 +238,7 @@ Dynamic html, lists.
 #### jqm_examples/example04.html
 
 Message broadcasting.
+
+TODO: Example of using popups and dialogs with screens.
+
+TODO: Example for Bootstrap.

@@ -1,0 +1,36 @@
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<!-- JQuery is needed -->
+        	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+	        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    	    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+        			
+			<!-- Screens.js library -->
+			<script src="../screens.js"></script>
+		
+			<!-- Load classes we will use -->
+			<script src="classes/ReceiverScreen.js"></script>
+			<script src="classes/SenderScreen.js"></script>
+		
+			<script>
+				$(document).ready(function()
+				{
+					Screen.PushScreen(Screen.JQMLoader, '#page0', ReceiverScreen);
+					Screen.PushScreen(Screen.JQMLoader, '#senderpage', SenderScreen);
+				});
+			</script>
+		
+		</head>
+		<body>
+			<div data-role="page" id="page0">
+            	<div data-role="content">
+	            </div>
+    	    </div>
+			<div data-role="page" id="senderpage">
+            	<div data-role="content">
+                	<button id="myButton">Send Message</button>
+	            </div>
+    	    </div>
+		</body>
+	</html>
