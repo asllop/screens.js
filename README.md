@@ -239,6 +239,10 @@ Dynamic html, lists.
 
 Message broadcasting.
 
+#### jqm_examples/example05.html
+
+Loading subscreens.
+
 TODO: Example of using popups and dialogs with screens.
 
-TODO: Example for Bootstrap.
+TODO: Examples for Bootstrap.
