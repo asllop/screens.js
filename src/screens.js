@@ -381,7 +381,7 @@ function __LOAD_CLASS__(name, baseurl, obj, readyCallBack)
 
     if (typeof(window[name]) === 'undefined')
     {
-        if (readyCallBack == 'undefined')
+        if (readyCallBack == null)
         {
             jQuery.ajaxSetup({async:false});
             
