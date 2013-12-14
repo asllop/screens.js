@@ -122,7 +122,7 @@ __CLASS__('SCRObject',
     
     UnloadClass: function(classname)
     {
-        return delete window[classname];
+        return __UNLOAD_CLASS__(classname);
     },
     
 	RegisterReceiver: function(delegate, filter)
@@ -425,6 +425,22 @@ function __LOAD_CLASS__(name, baseurl, obj, readyCallBack)
     else
     {
         // Class already loaded
+        return false;
+    }
+}
+
+function __UNLOAD_CLASS__(className)
+{
+    if (typeof(className) == 'string')
+    {
+        return delete window[classname];
+    }
+    else if (typeof(className) == 'object')
+    {
+        return delete classname;
+    }
+    else
+    {
         return false;
     }
 }
