@@ -52,10 +52,30 @@ function __CLASS__(name, obj1, obj2)
         // Init base methods
         obj1.New = function()
         {
+            if (typeof(this.Super) !== 'undefined')
+            {
+                // Trying to create an object from an object, instead of a class
+                return null;
+            }
+            
             var newObj = __CLONE__(this);
 
             newObj.OBJECT_UNIQUE_KEY = Math.floor(Math.random() * 10000000000000000).toString();
             newObj['Init'].apply(newObj, arguments);
+            
+            if (newObj.CLASS_TYPE.length > 1)   // It is a subclass of something, create the Super
+            {
+                var baseClassName = newObj.CLASS_TYPE.last();
+                
+                var callname = '__CLONE__(' + baseClassName + ')';
+                var parentObj = eval(callname);
+                
+                newObj.Super = parentObj;
+            }
+            else
+            {
+                newObj.Super = null;
+            }
             
             return newObj;
         };
