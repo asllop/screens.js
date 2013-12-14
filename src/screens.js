@@ -173,6 +173,11 @@ __CLASS__('Screen', SCRObject,
         __POP_SCREEN__(retdata);
     },
     
+    SetScreen: function(selector, screen)
+    {
+        __SET_SCREEN__(screen, selector);
+    },
+    
     JQMLoader: function(pageSelector)
     {
         __JQM_LOADER__(pageSelector);
@@ -366,6 +371,23 @@ function __POP_SCREEN__(retdata)
     }
 }
 
+// Set a Screen class to control a part of an existing page
+function __SET_SCREEN__(screen, selector)
+{
+    var name = screen.CLASS_NAME;
+    
+    // Disable all events
+    $(selector).find("*").off();
+    
+    // Create an instance of screen class and save it in the stack
+    var callname = name + '.New()';
+    var screenObj = eval(callname);
+
+    __BRAND__(selector, screenObj);
+
+    screenObj.OnLoad();      // Screen OnLoad methode
+}
+
 function __JQM_LOADER__(pageSelector)
 {
     $.mobile.changePage(pageSelector);
@@ -429,13 +451,13 @@ function __LOAD_CLASS__(name, baseurl, obj, readyCallBack)
     }
 }
 
-function __UNLOAD_CLASS__(className)
+function __UNLOAD_CLASS__(classname)
 {
-    if (typeof(className) == 'string')
+    if (typeof(classname) === 'string')
     {
         return delete window[classname];
     }
-    else if (typeof(className) == 'object')
+    else if (typeof(classname) === 'object')
     {
         return delete classname;
     }
