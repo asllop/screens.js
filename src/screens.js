@@ -61,8 +61,7 @@ function __CLASS__(name, obj1, obj2)
             var newObj = __CLONE__(this);
 
             newObj.OBJECT_UNIQUE_KEY = Math.floor(Math.random() * 10000000000000000).toString();
-            newObj['Init'].apply(newObj, arguments);
-            
+                        
             if (newObj.CLASS_TYPE.length > 1)   // It is a subclass of something, create the Super
             {
                 var baseClassName = newObj.CLASS_TYPE.last();
@@ -76,6 +75,9 @@ function __CLASS__(name, obj1, obj2)
             {
                 newObj.Super = null;
             }
+            
+            // Call constructor
+            newObj['Init'].apply(newObj, arguments);
             
             return newObj;
         };
