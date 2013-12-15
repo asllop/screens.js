@@ -163,9 +163,9 @@ __CLASS__('Screen', SCRObject,
         screen.OnClose();
     },
     
-    PushScreen: function(loader, selector, screen)
+    PushScreen: function(selector, screen, loader, args)
     {
-        __PUSH_SCREEN__(loader, selector, screen);
+        __PUSH_SCREEN__(selector, screen, loader, args);
     },
     
     PopScreen: function(retdata)
@@ -175,12 +175,12 @@ __CLASS__('Screen', SCRObject,
     
     SetScreen: function(selector, screen)
     {
-        __SET_SCREEN__(screen, selector);
+        __SET_SCREEN__(selector, screen);
     },
     
-    JQMLoader: function(pageSelector)
+    JQMLoader: function(pageSelector, args)
     {
-        __JQM_LOADER__(pageSelector);
+        __JQM_LOADER__(pageSelector, args);
     },
     
     SetHtml: function(selector, html)
@@ -321,7 +321,7 @@ function __DESERIALIZE__(obj)
     return copy;
 }
 
-function __PUSH_SCREEN__(loader, selector, screen)
+function __PUSH_SCREEN__(selector, screen, loader, args)
 {
     var name = screen.CLASS_NAME;
     
@@ -331,8 +331,8 @@ function __PUSH_SCREEN__(loader, selector, screen)
 
     __BRAND__(selector, screenObj);
 
-    loader(selector);    	// execute loader callback
-    screenObj.OnLoad();      // Screen OnLoad methode
+    loader(selector, args);     // execute loader callback
+    screenObj.OnLoad();         // Screen OnLoad methode
     
     // Add screen to stack
     window.SCREEN_STACK.push({screen: screenObj, baseurl: selector, loader: loader});
@@ -372,7 +372,7 @@ function __POP_SCREEN__(retdata)
 }
 
 // Set a Screen class to control a part of an existing page
-function __SET_SCREEN__(screen, selector)
+function __SET_SCREEN__(selector, screen)
 {
     var name = screen.CLASS_NAME;
     
@@ -388,7 +388,7 @@ function __SET_SCREEN__(screen, selector)
     screenObj.OnLoad();      // Screen OnLoad methode
 }
 
-function __JQM_LOADER__(pageSelector)
+function __JQM_LOADER__(pageSelector, args)
 {
     $.mobile.changePage(pageSelector);
 }
