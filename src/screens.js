@@ -98,7 +98,7 @@ function __CLASS__(name, obj1, obj2)
 }
 
 // Base class
-__CLASS__('SCRObject',
+__CLASS__('Obj',
 {
     Clone: function(obj)
     {
@@ -147,7 +147,7 @@ __CLASS__('SCRObject',
 });
 
 // Base class for screens
-__CLASS__('Screen', SCRObject,
+__CLASS__('Screen', Obj,
 {
     OnLoad: function()
     {},
