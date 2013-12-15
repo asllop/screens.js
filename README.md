@@ -73,13 +73,14 @@ Inheritance works in a similar way, creating **AnotherClass.js**:
 			alert("AnotherClass constructor");
 		},
 		
-		anotherFoo: function(name)
+		foo: function(name)
 		{
 			alert("Another " + this.salute + " " + name);
+			this.Super.foo(name);
 		}
 	});
 
-The resulting class contains all methodes and propierties of the original NewClass plus the AnotherClass ones. The methodes and propierties with the same name are overwritten, in this case, the constructor.
+The resulting class contains all methodes and propierties of the original NewClass plus the AnotherClass ones. The methodes and propierties with the same name are overwritten. The Super propierty gives access to the superclass elements.
 
 ### 2. Model View Controller
 
