@@ -232,6 +232,8 @@ Basic class definition and usage.
 
 Contexts in class definitions.
 
+TODO: messages
+
 #### jqm_examples
 
 Examples of using Screens.js with JQuery Mobile backend.
@@ -255,6 +257,10 @@ Message broadcasting.
 #### jqm_examples/example05.html
 
 Loading subscreens.
+
+TODO: Returning data from a screen.
+
+TODO: Custom events.
 
 TODO: Example of using popups and dialogs with screens.
 

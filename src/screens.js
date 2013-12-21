@@ -3,7 +3,7 @@
  * Copyright (C) 2013 Andreu Santaren Llop
  */
 
-// Init ScreensJS library
+// Init Screens.js library
 {
     Array.prototype.last = function()
     {
@@ -43,7 +43,7 @@ function __CONTEXT_CLASS__(context, name, obj1, obj2)
         _asc_.CLASS_TYPE.push(_asc_.CLASS_NAME);
         _asc_.CLASS_NAME = name;
         
-        // Create the global variable for the class
+        // Create the variable for the class
         context[name] = _asc_;
         return _asc_;
     }
@@ -59,6 +59,8 @@ function __CONTEXT_CLASS__(context, name, obj1, obj2)
             }
             
             var newObj = __CLONE__(this);
+            
+            delete newObj.New;
 
             newObj.OBJECT_UNIQUE_KEY = Math.floor(Math.random() * 10000000000000000).toString();
                         
@@ -91,7 +93,7 @@ function __CONTEXT_CLASS__(context, name, obj1, obj2)
         obj1.CLASS_TYPE = new Array("__CLASS__");
         obj1.CLASS_NAME = name;
 
-        // Create the global variable for the class
+        // Create the variable for the class
         context[name] = obj1;
         return obj1;
     }
