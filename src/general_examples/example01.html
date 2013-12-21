@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- JQuery is needed -->
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <!-- Screens.js library -->
+        <script src="../screens.js"></script>
+
+        <!-- Load classes we will use -->
+        <script src="classes/NewClass.js"></script>
+
+        <script>
+            $(document).ready(function()
+            {
+                var newObj1 = NewClass.New();
+                newObj1.foo('Joe');
+
+                var newObj2 = NewClass.New();
+                newObj2.salute = 'Bye';
+                newObj2.foo('Tom');
+            });
+        </script>
+
+    </head>
+    <body>
+        <div>Example01</div>
+    </body>
+</html>
