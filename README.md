@@ -220,9 +220,21 @@ Using a SendBroadcast instead of a SendOrderedBriadcast will result in a massive
 
 You can find the examples inside the **src** directory.
 
+#### general_examples
+
+General examples of using the library.
+
+#### general_examples/example01.html
+
+Basic class definition and usage.
+
+#### general_examples/example02.html
+
+Contexts in class definitions.
+
 #### jqm_examples
 
-That's the folder where are located all the examples of using Screens.js with JQuery Mobile backend.
+Examples of using Screens.js with JQuery Mobile backend.
 
 #### jqm_examples/example01.html
 
