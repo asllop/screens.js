@@ -1,6 +1,4 @@
 - Create a more generalized system to allow Push/PopScreen to work with different backends:
 	- Create backends (loader) for Bootstrap and JQuery UI.
 
-- Create classes on the context where it is declared, not on the global context by default.
-
 - Create a tutorial and API doc.

@@ -20,7 +20,7 @@
 }
 
 // Create a class
-function __CLASS__(name, obj1, obj2)
+function __CONTEXT_CLASS__(context, name, obj1, obj2)
 {
     if (obj2 !== undefined)            // New class by heritance
     {
@@ -44,7 +44,7 @@ function __CLASS__(name, obj1, obj2)
         _asc_.CLASS_NAME = name;
         
         // Create the global variable for the class
-        window[name] = _asc_;
+        context[name] = _asc_;
         return _asc_;
     }
     else                        // New base class
@@ -92,9 +92,15 @@ function __CLASS__(name, obj1, obj2)
         obj1.CLASS_NAME = name;
 
         // Create the global variable for the class
-        window[name] = obj1;
+        context[name] = obj1;
         return obj1;
     }
+}
+
+// Create a class in the global context
+function __CLASS__(name, obj1, obj2)
+{
+    return __CONTEXT_CLASS__(window, name, obj1, obj2);
 }
 
 // Base class
