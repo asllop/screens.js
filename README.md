@@ -232,7 +232,7 @@ Basic class definition and usage.
 
 Contexts in class definitions.
 
-TODO: messages
+TODO: broadcast messaging
 
 #### jqm_examples
 
@@ -258,7 +258,9 @@ Message broadcasting.
 
 Loading subscreens.
 
-TODO: Returning data from a screen.
+#### jqm_examples/example06.html
+
+Returning data from a screen.
 
 TODO: Custom events.
 
