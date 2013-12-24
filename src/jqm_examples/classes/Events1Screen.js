@@ -4,6 +4,7 @@ __CLASS__('Events1Screen', Screen,
 	OnLoad: function()
 	{
 		this.Click(this.buttonClick, '#button');
+		this.DoubleClick(this.buttonDblClick, '#dblbutton');
 		this.Change(this.inputChange, '#input');
 		this.ListClick(this.listClick, '#list');
 		this.CheckboxClick(this.checkboxClick, '#checkbox');
@@ -15,7 +16,12 @@ __CLASS__('Events1Screen', Screen,
 	{
 		alert('Button Click');
 	},
-	
+
+	buttonDblClick: function(sender)
+	{
+		alert('Button Double Click');
+	},
+		
 	inputChange: function(sender)
 	{
 		alert('Input Changed, value = ' + $(sender).val());

@@ -220,6 +220,11 @@ __CLASS__('Screen', Obj,
     {
         __CLICK__(this, delegate, selector);
     },
+    
+    DoubleClick: function(delegate, selector)
+    {
+        __DOUBLE_CLICK__(this, delegate, selector);
+    },
 
     ListClick: function(delegate, selector)
     {
@@ -494,6 +499,15 @@ function __REF__(obj, selector)
 function __CLICK__(obj, delegate, selector)
 {
     __REF__(obj, selector).click(function()
+    {
+        $.proxy(delegate, obj)(this);
+    });
+}
+
+// Set double click event delegate
+function __DOUBLE_CLICK__(obj, delegate, selector)
+{
+    __REF__(obj, selector).dblclick(function()
     {
         $.proxy(delegate, obj)(this);
     });
