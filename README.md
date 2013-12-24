@@ -262,7 +262,9 @@ Loading subscreens.
 
 Returning data from a screen.
 
-TODO: Custom events.
+#### jqm_examples/example07.html
+
+Custom events and callbacks.
 
 TODO: Example of using popups and dialogs with screens.
 
