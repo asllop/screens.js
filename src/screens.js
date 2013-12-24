@@ -479,9 +479,9 @@ function __UNLOAD_CLASS__(classname)
 // Callback in the obj context setting the original 'this' as argument
 function __CALLBACK__(obj, callback)
 {
-    return function()
+    return function(args)
     {
-        $.proxy(callback, obj)(this);
+        $.proxy(callback, obj)(this, args);
     };
 }
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+        
+        <script src="../screens.js"></script>
+        
+        <!-- Load classes we will use -->
+        <script src="classes/CustomEventsScreen.js"></script>
+        
+        <script>
+            $(document).ready(function()
+            {
+            	// Show first screen
+                Screen.PushScreen('#customeventspage', CustomEventsScreen, Screen.JQMLoader)
+            });
+        </script>
+        
+    </head>
+    <body>
+        <div data-role="page" id="page0">
+            <div data-role="content">
+                <!-- Empty main page, never shown -->
+            </div>
+        </div>
+        
+        <div data-role="page" id="customeventspage">
+            <div data-role="header">
+                <h1 id="title">Custom Events Example</h1>
+            </div>
+            <div data-role="content">
+                <input type="text" id="input" value="" placeholder="Write here..."/>
+            </div>
+        </div>
+    </body>
+</html>

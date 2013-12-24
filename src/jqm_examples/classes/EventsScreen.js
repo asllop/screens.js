@@ -1,5 +1,5 @@
 
-__CLASS__('Events1Screen', Screen,
+__CLASS__('EventsScreen', Screen,
 {
 	OnLoad: function()
 	{
