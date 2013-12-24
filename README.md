@@ -266,6 +266,8 @@ Returning data from a screen.
 
 Custom events and callbacks.
 
-TODO: Example of using popups and dialogs with screens.
+#### jqm_examples/example08.html
+
+Crating popups.
 
 TODO: Examples for Bootstrap.
