@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- JQuery is needed -->
+    	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+    
+		<!-- Screens.js library -->
+		<script src="../screens.js"></script>
+		
+        <!-- Load classes we will use -->
+        <script src="classes/CreatePopupScreen.js"></script>
+        <script src="classes/PopupScreen.js"></script>
+	
+		<script>
+			$(document).ready(function()
+			{
+				Screen.PushScreen('#mainpage', CreatePopupScreen, Screen.JQMLoader);
+			});
+		</script>
+	
+	</head>
+	<body>
+		<div data-role="page" id="page0">
+        	<div data-role="content">
+            </div>
+	    </div>
+	    
+		<div data-role="page" id="mainpage">
+            <div data-role="header">
+                <h1 id="title">Create Popup Screen</h1>
+            </div>
+        	<div data-role="content">
+            	<button id="button">Open Popup</button>
+            </div>
+            
+            <div data-role="popup" id="popup1" data-theme="c" class="ui-corner-all">
+                <div data-role="header" data-theme="a" class="ui-corner-top"><h1>Popup 1</h1></div>
+                <div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+                    <h3 class="ui-title">Press button to close.</h3>
+                    <button id="buttonClose">Close</button>
+                </div>
+            </div>
+	    </div>
+	</body>
+</html>
