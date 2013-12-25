@@ -183,7 +183,7 @@ __CLASS__('Screen', Obj,
     
     SetScreen: function(selector, screen)
     {
-        __SET_SCREEN__(selector, screen);
+        return __SET_SCREEN__(selector, screen);
     },
     
     JQMLoader: function(pageSelector, args)
@@ -399,6 +399,8 @@ function __SET_SCREEN__(selector, screen)
     __BRAND__(selector, screenObj);
 
     screenObj.OnLoad();      // Screen OnLoad methode
+    
+    return screenObj;
 }
 
 function __JQM_LOADER__(pageSelector, args)
