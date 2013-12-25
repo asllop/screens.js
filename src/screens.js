@@ -244,31 +244,6 @@ __CLASS__('Screen', Obj,
     RadioClick: function(delegate, selector)
     {
         __CHECKER_CLICK__(this, delegate, selector, 'radio');
-    },
-            
-    MouseEnter: function(delegate, selector)
-    {
-        __MOUSE_ENTER__(this, delegate, selector);
-    },
-    
-    MouseLeave: function(delegate, selector)
-    {
-        __MOUSE_LEAVE__(this, delegate, selector);
-    },
-            
-    MouseDown: function(delegate, selector)
-    {
-        __MOUSE_DOWN__(this, delegate, selector);
-    },
-            
-    MouseUp: function(delegate, selector)
-    {
-        __MOUSE_UP__(this, delegate, selector);
-    },
-            
-    MouseMove: function(delegate, selector)
-    {
-        __MOUSE_MOVE__(this, delegate, selector);
     }
 });
 
@@ -500,91 +475,31 @@ function __REF__(obj, selector)
 // Set click event delegate
 function __CLICK__(obj, delegate, selector)
 {
-    __REF__(obj, selector).click(function()
-    {
-        $.proxy(delegate, obj)(this);
-    });
+    __REF__(obj, selector).click(__CALLBACK__(obj, delegate));
 }
 
 // Set double click event delegate
 function __DOUBLE_CLICK__(obj, delegate, selector)
 {
-    __REF__(obj, selector).dblclick(function()
-    {
-        $.proxy(delegate, obj)(this);
-    });
+    __REF__(obj, selector).dblclick(__CALLBACK__(obj, delegate));
 }
 
 // Set list click event delegate
 function __LIST_CLICK__(obj, delegate, selector)
 {
-    __REF__(obj, selector).on('click', 'li', function()
-    {
-        $.proxy(delegate, obj)(this);
-    });
+    __REF__(obj, selector).on('click', 'li', __CALLBACK__(obj, delegate));
 }
 
 // Element changed delegate
 function __CHANGE__(obj, delegate, selector)
 {
-    __REF__(obj, selector).on('change', function()
-    {
-        $.proxy(delegate, obj)(this);
-    });
+    __REF__(obj, selector).on('change', __CALLBACK__(obj, delegate));
 }
 
 // Set checkbox/radio click event delegate
 function __CHECKER_CLICK__(obj, delegate, selector, type)
 {
-	__REF__(obj, selector).find('input[type=' + type + ']').on('click', function()
-    {
-        $.proxy(delegate, obj)(this);
-    });
-}
-
-// Set mouse ter delegate
-function __MOUSE_ENTER__(obj, delegate, selector)
-{
-    __REF__(obj, selector).mouseenter(function()
-    {
-        $.proxy(delegate, obj)(this);
-    });
-}
-
-// Set mouse leave delegate
-function __MOUSE_LEAVE__(obj, delegate, selector)
-{
-    __REF__(obj, selector).mouseleave(function()
-    {
-        $.proxy(delegate, obj)(this);
-    });
-}
-
-// Set mouse down delegate
-function __MOUSE_DOWN__(obj, delegate, selector)
-{
-    __REF__(obj, selector).mousedown(function()
-    {
-        $.proxy(delegate, obj)(this);
-    });
-}
-
-// Set mouse up delegate
-function __MOUSE_UP__(obj, delegate, selector)
-{
-    __REF__(obj, selector).mouseup(function()
-    {
-        $.proxy(delegate, obj)(this);
-    });
-}
-
-// Set mouse move delegate
-function __MOUSE_MOVE__(obj, delegate, selector)
-{
-    __REF__(obj, selector).mousemove(function()
-    {
-        $.proxy(delegate, obj)(this);
-    });
+	__REF__(obj, selector).find('input[type=' + type + ']').on('click', __CALLBACK__(obj, delegate));
 }
 
 // Register a broadcast receiver
