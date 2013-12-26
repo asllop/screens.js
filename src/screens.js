@@ -443,9 +443,9 @@ function __LOAD_CLASS__(name, baseurl, obj, readyCallBack)
 
 function __UNLOAD_CLASS__(classname)
 {
-    if (typeof(classname) === 'object')
+    if (typeof(classname) === 'string')
     {
-        return delete classname;
+        return delete window[classname];
     }
     else
     {

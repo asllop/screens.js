@@ -240,6 +240,10 @@ Class inheritance, subclass and superclass.
 
 Broadcast messaging.
 
+#### general_examples/example05.html
+
+Loading and unloading classes dynamically.
+
 #### jqm_examples
 
 Examples of using Screens.js with JQuery Mobile backend.
