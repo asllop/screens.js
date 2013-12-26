@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- JQuery is needed -->
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <!-- Screens.js library -->
+        <script src="../screens.js"></script>
+
+        <!-- Load classes we will use -->
+        <script src="classes/NewClass.js"></script>
+        <script src="classes/AnotherClass.js"></script>
+
+        <script>
+            $(document).ready(function()
+            {
+                var newObj1 = AnotherClass.New();
+                newObj1.foo('Joe');
+            });
+        </script>
+
+    </head>
+    <body>
+        <div>Example03</div>
+    </body>
+</html>

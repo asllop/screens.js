@@ -232,6 +232,10 @@ Basic class definition and usage.
 
 Contexts in class definitions.
 
+#### general_examples/example03.html
+
+Class inheritance, subclass and superclass.
+
 TODO: broadcast messaging
 
 #### jqm_examples
