@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- JQuery is needed -->
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <!-- Screens.js library -->
+        <script src="../screens.js"></script>
+
+        <!-- Load classes we will use -->
+        <script src="classes/ReceiverClass.js"></script>
+        <script src="classes/SenderClass.js"></script>
+
+        <script>
+            $(document).ready(function()
+            {
+                var receiverObj = ReceiverClass.New();
+                var senderObj = SenderClass.New();
+                
+                senderObj.send("Hello World!");
+                senderObj.send(555);
+                senderObj.send(new Array(1, 2, 3));
+                senderObj.send(this);
+                
+                receiverObj.unregister();
+            });
+        </script>
+
+    </head>
+    <body>
+        <div>Example04</div>
+    </body>
+</html>

@@ -236,7 +236,9 @@ Contexts in class definitions.
 
 Class inheritance, subclass and superclass.
 
-TODO: broadcast messaging
+#### general_examples/example04.html
+
+Broadcast messaging.
 
 #### jqm_examples
 
