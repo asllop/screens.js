@@ -176,9 +176,9 @@ __CLASS__('Screen', Obj,
         __PUSH_SCREEN__(selector, screen, loader, args);
     },
     
-    PopScreen: function(retdata)
+    PopScreen: function(retdata, args)
     {
-        __POP_SCREEN__(retdata);
+        __POP_SCREEN__(retdata, args);
     },
     
     SetScreen: function(selector, screen)
@@ -318,10 +318,10 @@ function __PUSH_SCREEN__(selector, screen, loader, args)
     screenObj.OnLoad();         // Screen OnLoad methode
     
     // Add screen to stack
-    window.SCREEN_STACK.push({screen: screenObj, selector: selector, loader: loader, args: args});
+    window.SCREEN_STACK.push({screen: screenObj, selector: selector, loader: loader});
 }
 
-function __POP_SCREEN__(retdata)
+function __POP_SCREEN__(retdata, args)
 {
     // It is the main screen, no one in the back
     if (window.SCREEN_STACK.length <= 1)
@@ -344,7 +344,7 @@ function __POP_SCREEN__(retdata)
     
     __UNBRAND__(lastScreen.screen);
 
-    stackObj.loader(pageSelector, stackObj.args);
+    stackObj.loader(pageSelector, args);
     stackObj.screen.OnLoad();      // Screen OnLoad methode
 
     // Call the return function

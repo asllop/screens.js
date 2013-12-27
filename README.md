@@ -290,6 +290,10 @@ Custom events and callbacks.
 
 Crating popups.
 
+#### jqm_examples/example09.html
+
+Passing arguments to the loader.
+
 #### bootstrap_examples
 
 Examples of using Screens.js with Bootstrap backend.
