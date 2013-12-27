@@ -318,7 +318,7 @@ function __PUSH_SCREEN__(selector, screen, loader, args)
     screenObj.OnLoad();         // Screen OnLoad methode
     
     // Add screen to stack
-    window.SCREEN_STACK.push({screen: screenObj, baseurl: selector, loader: loader});
+    window.SCREEN_STACK.push({screen: screenObj, selector: selector, loader: loader, args: args});
 }
 
 function __POP_SCREEN__(retdata)
@@ -336,15 +336,15 @@ function __POP_SCREEN__(retdata)
     // Get de previus screen object
     var stackObj = window.SCREEN_STACK.last();
     
-    var pageSelector = stackObj.baseurl;
-    var lastPageSelector = lastScreen.baseurl;
+    var pageSelector = stackObj.selector;
+    var lastPageSelector = lastScreen.selector;
     
     // Disable all events
     $(lastPageSelector).add("*").off();
     
     __UNBRAND__(lastScreen.screen);
 
-    stackObj.loader(pageSelector);
+    stackObj.loader(pageSelector, stackObj.args);
     stackObj.screen.OnLoad();      // Screen OnLoad methode
 
     // Call the return function
