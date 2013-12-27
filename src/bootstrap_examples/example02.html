@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <!-- JQuery is needed -->
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <!-- Screens.js library -->
+        <script src="../screens.js"></script>
+        
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        
+        <script src="classes/MenuScreen.js"></script>
+        <script src="classes/Nav1Screen.js"></script>
+        <script src="classes/Nav2Screen.js"></script>
+        
+        <script>
+            $(document).ready(function()
+            {
+                Screen.SetScreen('#menu', MenuScreen);
+                Screen.SetScreen('#page1', Nav1Screen);
+                Screen.SetScreen('#page2', Nav2Screen);
+            });
+        </script>
+    </head>
+    
+    <body style="padding-top: 60px;">
+            
+        <div id="menu" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a id="goblank" class="brand">Blank</a>
+                    <ul class="nav">
+                        <li id="gopage1"><a>Page 1</a></li>
+                        <li id="gopage2"><a>Page 2</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    	
+        <div id="page1" class="container" hidden>
+            <h1>Page 1</h1>
+            <button id="button">Hide</button>
+            <p id="paragraph">
+                Jatsia per vulgada fama fos informat de vostres virtuts, molt majorment ara he 
+                hagut notícia d'aquelles, per vostra senyoria voler-me comunicar e disvetlar vostres 
+                virtuosíssims desigs sobre los fets dels antics virtuosos e en fama molt gloriosos 
+                cavallers dels quals los poetes e historials han en ses obres comandat perpetuant 
+                llurs recordacions e virtuosos actes. E singularment los molt insignes actes de 
+                cavalleria d'aquell tan famós cavaller, que, com lo sol resplandeix entre los altres 
+                planetes, així resplandeix aquest en singularitat de cavalleria entre els altres 
+                cavallers del món, apellat Tirant lo Blanc, qui per sa virtut conquistà molts regnes e 
+                províncies donant-los a altres cavallers, no volent-ne sinó la sola honor de 
+                cavalleria. E més avant conquistà tot l'imperi grec, cobrant-lo dels turcs qui aquell 
+                havien subjugat a llur domini dels crestians grecs.
+            </p>
+        </div>
+
+        <div id="page2" class="container" hidden>
+            <h1>Page 2</h1>
+            <input type="text" id="input"><br>
+            <button id="button">Text</button>
+        </div>
+        
+    </body>
+</html>
