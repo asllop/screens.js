@@ -66,26 +66,17 @@ function __CONTEXT_CLASS__(context, name, obj1, obj2)
         
         obj1.Super = function()
         {
-            var index = this.CLASS_TYPE.indexOf(this.CLASS_NAME);
-            var superClass = null;
-            
-            if (index === -1)
-            {
-                superClass = this.CLASS_TYPE.last();
-            }
-            else
-            {
-                superClass = this.CLASS_TYPE[index - 1];
-            }
+            superClass = this.CLASS_TYPE.last();
             
             if (superClass === "__CLASS__")
             {
-                return this;
+                return null;
             }
             else
             {
                 var callname = '__CLONE__(' + superClass + ')';
                 var object = eval(callname);
+                delete object.New;
                 
                 return object;
             }
