@@ -52,36 +52,43 @@ function __CONTEXT_CLASS__(context, name, obj1, obj2)
         // Init base methods
         obj1.New = function()
         {
-            if (typeof(this.Super) !== 'undefined')
-            {
-                // Trying to create an object from an object, instead of a class
-                return null;
-            }
-            
             var newObj = __CLONE__(this);
             
             delete newObj.New;
 
             newObj.OBJECT_UNIQUE_KEY = Math.floor(Math.random() * 10000000000000000).toString();
-                        
-            if (newObj.CLASS_TYPE.length > 1)   // It is a subclass of something, create the Super
-            {
-                var baseClassName = newObj.CLASS_TYPE.last();
-                
-                var callname = '__CLONE__(' + baseClassName + ')';
-                var parentObj = eval(callname);
-                
-                newObj.Super = parentObj;
-            }
-            else
-            {
-                newObj.Super = null;
-            }
             
             // Call constructor
             newObj['Init'].apply(newObj, arguments);
             
             return newObj;
+        };
+        
+        obj1.Super = function()
+        {
+            var index = this.CLASS_TYPE.indexOf(this.CLASS_NAME);
+            var superClass = null;
+            
+            if (index === -1)
+            {
+                superClass = this.CLASS_TYPE.last();
+            }
+            else
+            {
+                superClass = this.CLASS_TYPE[index - 1];
+            }
+            
+            if (superClass === "__CLASS__")
+            {
+                return this;
+            }
+            else
+            {
+                var callname = '__CLONE__(' + superClass + ')';
+                var object = eval(callname);
+                
+                return object;
+            }
         };
         
         if (!('Init' in obj1))

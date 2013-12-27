@@ -8,6 +8,8 @@ __CLASS__('AnotherClass', NewClass,
     foo: function(name)
     {
         alert("Another " + this.salute + " " + name);
-        this.Super.foo(name);
+        
+        var superObj = this.Super();
+        superObj.foo(name);
     }
 });

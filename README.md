@@ -76,7 +76,7 @@ Inheritance works in a similar way, creating **AnotherClass.js**:
 		foo: function(name)
 		{
 			alert("Another " + this.salute + " " + name);
-			this.Super.foo(name);
+			this.Super().foo(name);
 		}
 	});
 
