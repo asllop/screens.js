@@ -8,6 +8,6 @@ __CLASS__('Page1Screen', Screen,
             
     clickButton: function(sender)
     {
-        Screen.PushScreen('#page2', Page2Screen, customLoader);
+        Screen.PushScreen('#page2', Page2Screen, bootstrapLoader);
     }
 });

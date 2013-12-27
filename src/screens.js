@@ -185,12 +185,7 @@ __CLASS__('Screen', Obj,
     {
         return __SET_SCREEN__(selector, screen);
     },
-    
-    JQMLoader: function(pageSelector, args)
-    {
-        __JQM_LOADER__(pageSelector, args);
-    },
-    
+
     SetHtml: function(selector, html)
     {
 	    __SET_HTML__(this, selector, html);
@@ -376,11 +371,6 @@ function __SET_SCREEN__(selector, screen)
     screenObj.OnLoad();      // Screen OnLoad methode
     
     return screenObj;
-}
-
-function __JQM_LOADER__(pageSelector, args)
-{
-    $.mobile.changePage(pageSelector);
 }
 
 // Insert HTML in the DOM and update screen classes

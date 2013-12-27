@@ -16,10 +16,15 @@
         <script src="classes/Page3Screen.js"></script>
         
         <script>
+            function jqmLoader(selector)
+            {
+                $.mobile.changePage(selector);
+            }
+            
             $(document).ready(function()
             {
             	// Show first screen
-                Screen.PushScreen('#page1', Page1Screen, Screen.JQMLoader)
+                Screen.PushScreen('#page1', Page1Screen, jqmLoader);
             });
         </script>
         

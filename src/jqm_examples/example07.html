@@ -14,10 +14,15 @@
         <script src="classes/CustomEventsScreen.js"></script>
         
         <script>
+            function jqmLoader(selector)
+            {
+                $.mobile.changePage(selector);
+            }
+            
             $(document).ready(function()
             {
             	// Show first screen
-                Screen.PushScreen('#customeventspage', CustomEventsScreen, Screen.JQMLoader);
+                Screen.PushScreen('#customeventspage', CustomEventsScreen, jqmLoader);
             });
         </script>
         

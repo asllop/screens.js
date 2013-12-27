@@ -14,9 +14,14 @@
         <script src="classes/Controller2Screen.js"></script>
 	
 		<script>
+		    function jqmLoader(selector)
+            {
+                $.mobile.changePage(selector);
+            }
+            
 			$(document).ready(function()
 			{
-				Screen.PushScreen('#mainpage', Controller1Screen, Screen.JQMLoader);
+				Screen.PushScreen('#mainpage', Controller1Screen, jqmLoader);
 				Screen.SetScreen('#secondarypage', Controller2Screen);
 			});
 		</script>

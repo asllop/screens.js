@@ -14,9 +14,14 @@
         <script src="classes/PopupScreen.js"></script>
 	
 		<script>
+            function jqmLoader(selector)
+            {
+                $.mobile.changePage(selector);
+            }
+            
 			$(document).ready(function()
 			{
-				Screen.PushScreen('#mainpage', CreatePopupScreen, Screen.JQMLoader);
+				Screen.PushScreen('#mainpage', CreatePopupScreen, jqmLoader);
 			});
 		</script>
 	

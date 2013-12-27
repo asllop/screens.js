@@ -15,10 +15,15 @@
         <script src="classes/Result2Screen.js"></script>
         
         <script>
+            function jqmLoader(selector)
+            {
+                $.mobile.changePage(selector);
+            }
+            
             $(document).ready(function()
             {
             	// Show first screen
-                Screen.PushScreen('#page1', Result1Screen, Screen.JQMLoader)
+                Screen.PushScreen('#page1', Result1Screen, jqmLoader)
             });
         </script>
         
