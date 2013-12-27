@@ -101,10 +101,15 @@ In Screens.js everything is based on the concept of screen. A screen is basicall
 			<script src="BasicScreen.js"></script>
 		
 			<script>
+				function jqmLoader(selector)
+            	{
+                	$.mobile.changePage(selector);
+            	}
+            	
 				$(document).ready(function()
 				{
 					// Push the first screen on the stack
-					Screen.PushScreen('#mainpage', BasicScreen, Screen.JQMLoader)
+					Screen.PushScreen('#mainpage', BasicScreen, jqmLoader)
 				});
 			</script>
 		
@@ -193,10 +198,15 @@ And the **index.html**:
 			<script src="SenderScreen.js"></script>
 		
 			<script>
+			  	function jqmLoader(selector)
+            	{
+                	$.mobile.changePage(selector);
+            	}
+            	            	
 				$(document).ready(function()
 				{
-					Screen.PushScreen('#page0', ReceiverScreen, Screen.JQMLoader);
-					Screen.PushScreen('#senderpage', SenderScreen, Screen.JQMLoader);
+					Screen.PushScreen('#page0', ReceiverScreen, jqmLoader);
+					Screen.PushScreen('#senderpage', SenderScreen, jqmLoader);
 				});
 			</script>
 		
