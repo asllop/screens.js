@@ -155,6 +155,11 @@ __CLASS__('Obj',
     SendBroadcast: function(filter, message)
     {
         __SEND_BROADCAST__(filter, message, true);
+    },
+    
+    FindReceiver: function(receiver)
+    {
+        return __FIND_RECEIVER__(receiver);
     }
 });
 
@@ -555,6 +560,17 @@ function __SEND_BROADCAST__(filter, message, massive)
                 // If ordered broadcast and callback returns true, halt broadcast
                 if (arrCopy[i].callback(message)) return;
             }
+        }
+    }
+}
+
+function __FIND_RECEIVER__(receiver)
+{
+    for (var i = 0 ; i < window.BROADCAST_REGISTER_ARRAY.length ; i++)
+    {
+        if (window.BROADCAST_REGISTER_ARRAY[i].id === receiver)
+        {
+            return window.BROADCAST_REGISTER_ARRAY[i];
         }
     }
 }
