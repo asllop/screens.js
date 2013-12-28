@@ -1,5 +1,3 @@
 - Create a tutorial and API doc.
 
 - Recursive serialize/deserialize to allow classes to contain complex objects (with functions, objects, etc).
-
-- Find a way to share same context in Super() and this.

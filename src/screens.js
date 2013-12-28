@@ -66,7 +66,7 @@ function __CONTEXT_CLASS__(context, name, obj1, obj2)
         
         obj1.Super = function()
         {
-            superClass = this.CLASS_TYPE.last();
+            var superClass = this.CLASS_TYPE.last();
             
             if (superClass === "__CLASS__")
             {
@@ -74,9 +74,10 @@ function __CONTEXT_CLASS__(context, name, obj1, obj2)
             }
             else
             {
-                var callname = '__CLONE__(' + superClass + ')';
-                var object = eval(callname);
+                var object = __CLONE__(eval(superClass));
                 delete object.New;
+                
+                __MERGE__(this, object);
                 
                 return object;
             }
@@ -119,6 +120,11 @@ __CLASS__('Obj',
 	Deserialize: function(obj)
 	{
 		return __DESERIALIZE__(obj);
+	},
+	
+	Merge: function(org, dest)
+	{
+    	__MERGE__(org, dest);
 	},
 	
     LoadClass: function(name, baseurl, readyCallBack)
@@ -300,6 +306,24 @@ function __DESERIALIZE__(obj)
     delete copy.OBJ_FOO_NAMES;
     
     return copy;
+}
+
+// Copy existing propierties of org object to dest object
+function __MERGE__(org, dest)
+{
+    for (var attr in org)
+    {
+        if (typeof(org[attr]) !== 'function')
+        {
+            if (attr != 'CLASS_NAME' && attr != 'CLASS_TYPE' && attr != '__proto__')
+            {
+                if (dest[attr] !== undefined)
+                {
+                    dest[attr] = org[attr];
+                }
+            }
+        }
+    }
 }
 
 function __PUSH_SCREEN__(selector, screen, loader, args)
