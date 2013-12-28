@@ -8,6 +8,6 @@ __CLASS__('SenderScreen', Screen,
 	
 	buttonClick: function(sender)
 	{
-		this.SendOrderedBroadcast('MYFILTER', 'Helo World!');
+		this.SendOrderedBroadcast('MYFILTER', 'Hello World!');
 	}
 });
