@@ -1,8 +1,14 @@
 
 __CLASS__('MenuScreen', Screen,
 {
+    nav1Screen: null,
+    nav2Screen: null,
+    
     OnLoad: function()
     {
+        this.nav1Screen = this.SetScreen('#page1', Nav1Screen);
+        this.nav2Screen = this.SetScreen('#page2', Nav2Screen);
+        
         this.Click(this.clickGoBlank, '#goblank');
         this.Click(this.clickGoPage1, '#gopage1');
         this.Click(this.clickGoPage2, '#gopage2');
