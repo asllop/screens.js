@@ -341,7 +341,11 @@ function __PUSH_SCREEN__(selector, screen, loader, args)
 
     __BRAND__(selector, screenObj);
 
-    loader(selector, args);     // execute loader callback
+    if (loader != null)
+    {
+        loader(selector, args);     // execute loader callback
+    }
+    
     screenObj.OnLoad();         // Screen OnLoad methode
     
     // Add screen to stack
@@ -371,7 +375,11 @@ function __POP_SCREEN__(retdata, args)
     
     __UNBRAND__(lastScreen.screen);
 
-    stackObj.loader(pageSelector, args);
+    if (stackObj.loader != null)
+    {
+        stackObj.loader(pageSelector, args);
+    }
+    
     stackObj.screen.OnLoad();      // Screen OnLoad methode
 
     // Call the return function
