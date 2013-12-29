@@ -62,7 +62,7 @@ __CLASS__('CalculatorScreen', Screen,
             // Equal
             
             this.calculateOperation();
-            this.resetDisplay = false;
+            this.resetDisplay = true;
             this.lastOperation = "";
         }
         else
