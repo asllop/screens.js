@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <!-- JQuery is needed -->
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <!-- Screens.js library -->
+        <script src="../screens.js"></script>
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        
+        <script src="classes/CalculatorScreen.js"></script>
+        
+        <style>
+            .btn.btn-default
+            {
+                width: 50px;
+            }
+            
+            .button-container
+            {
+                width: 220px;
+                padding: 10px 10px 10px 10px;
+            }
+            
+            .input-group
+            {
+                width: 198px;
+                padding-bottom: 10px;
+            }
+            
+            .form-control
+            {
+                height: 45px;
+                direction: RTL;
+            }
+        </style>
+        
+        <script>
+
+            $(document).ready(function()
+            {
+                Screen.PushScreen('#calculator-container', CalculatorScreen, null);
+            });
+            
+        </script>
+    </head>
+    
+    <body>
+
+        <div id='calculator-container' class="button-container">
+
+            <div class="input-group">
+                <input id="display" class="form-control" type="text" disabled>
+            </div>
+            
+            <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default">7</button>
+                    <button type="button" class="btn btn-default">8</button>
+                    <button type="button" class="btn btn-default">9</button>
+                    <button type="button" class="btn btn-default btn-primary">+</button>
+                </div>
+            </div>
+            
+            <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default">4</button>
+                    <button type="button" class="btn btn-default">5</button>
+                    <button type="button" class="btn btn-default">6</button>
+                    <button type="button" class="btn btn-default btn-primary">-</button>
+                </div>
+            </div>
+            
+            <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default">1</button>
+                    <button type="button" class="btn btn-default">2</button>
+                    <button type="button" class="btn btn-default">3</button>
+                    <button type="button" class="btn btn-default btn-primary">x</button>
+                </div>
+            </div>
+            
+            <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-primary">C</button>
+                    <button type="button" class="btn btn-default">0</button>
+                    <button type="button" class="btn btn-default btn-primary">=</button>
+                    <button type="button" class="btn btn-default btn-primary">/</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
