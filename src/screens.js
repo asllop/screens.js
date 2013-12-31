@@ -201,6 +201,11 @@ __CLASS__('Screen', Obj,
     {
         return __SET_SCREEN__(selector, screen, sentdata);
     },
+    
+    UnsetScreen: function(selector, screenObj)
+    {
+        __UNSET_SCREEN__(selector, screenObj);
+    },
 
     SetHtml: function(selector, html)
     {
@@ -381,7 +386,7 @@ function __POP_SCREEN__(retdata, args)
     // Disable all events
     $(lastPageSelector).add("*").off();
     
-    __UNBRAND__(lastScreen.screen);
+    __UNBRAND__(lastScreen.selector);
 
     if (stackObj.loader != null)
     {
@@ -400,14 +405,11 @@ function __POP_SCREEN__(retdata, args)
 // Set a Screen class to control a part of an existing page
 function __SET_SCREEN__(selector, screen, sentdata)
 {
-    var name = screen.CLASS_NAME;
-    
     // Disable all events
     $(selector).find("*").off();
     
     // Create an instance of screen class and save it in the stack
-    var callname = name + '.New()';
-    var screenObj = eval(callname);
+    var screenObj = eval(screen.CLASS_NAME + '.New()');
 
     __BRAND__(selector, screenObj);
 
@@ -415,6 +417,16 @@ function __SET_SCREEN__(selector, screen, sentdata)
     screenObj.OnLoad(sentdata);     // Screen OnLoad methode
     
     return screenObj;
+}
+
+function __UNSET_SCREEN__(selector, screenObj)
+{
+    // Disable all events
+    $(selector).add("*").off();
+    
+    __UNBRAND__(selector);
+    
+    screenObj.OnClose();
 }
 
 // Insert HTML in the DOM and update screen classes
