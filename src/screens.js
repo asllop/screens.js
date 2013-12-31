@@ -488,7 +488,7 @@ function __CALLBACK__(obj, callback)
 {
     return function(args)
     {
-        $.proxy(callback, obj)(this, args);
+        return $.proxy(callback, obj)(this, args);
     };
 }
 
