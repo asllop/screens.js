@@ -171,6 +171,8 @@ __CLASS__('Obj',
 // Base class for screens
 __CLASS__('Screen', Obj,
 {
+    Selector: null,
+    
     OnLoad: function()
     {},
     
@@ -185,9 +187,9 @@ __CLASS__('Screen', Obj,
         screen.OnClose();
     },
     
-    PushScreen: function(selector, screen, loader, args)
+    PushScreen: function(selector, screen, sentdata, loader, args)
     {
-        __PUSH_SCREEN__(selector, screen, loader, args);
+        __PUSH_SCREEN__(selector, screen, sentdata, loader, args);
     },
     
     PopScreen: function(retdata, args)
@@ -195,9 +197,9 @@ __CLASS__('Screen', Obj,
         __POP_SCREEN__(retdata, args);
     },
     
-    SetScreen: function(selector, screen)
+    SetScreen: function(selector, screen, sentdata)
     {
-        return __SET_SCREEN__(selector, screen);
+        return __SET_SCREEN__(selector, screen, sentdata);
     },
 
     SetHtml: function(selector, html)
@@ -336,7 +338,7 @@ function __MERGE__(org, dest)
     }
 }
 
-function __PUSH_SCREEN__(selector, screen, loader, args)
+function __PUSH_SCREEN__(selector, screen, sentdata, loader, args)
 {
     var name = screen.CLASS_NAME;
     
@@ -351,7 +353,8 @@ function __PUSH_SCREEN__(selector, screen, loader, args)
         loader(selector, args);     // execute loader callback
     }
     
-    screenObj.OnLoad();         // Screen OnLoad methode
+    screenObj.Selector = selector;
+    screenObj.OnLoad(sentdata);     // Screen OnLoad methode
     
     // Add screen to stack
     window.SCREEN_STACK.push({screen: screenObj, selector: selector, loader: loader});
@@ -395,7 +398,7 @@ function __POP_SCREEN__(retdata, args)
 }
 
 // Set a Screen class to control a part of an existing page
-function __SET_SCREEN__(selector, screen)
+function __SET_SCREEN__(selector, screen, sentdata)
 {
     var name = screen.CLASS_NAME;
     
@@ -408,7 +411,8 @@ function __SET_SCREEN__(selector, screen)
 
     __BRAND__(selector, screenObj);
 
-    screenObj.OnLoad();      // Screen OnLoad methode
+    screenObj.Selector = selector;
+    screenObj.OnLoad(sentdata);     // Screen OnLoad methode
     
     return screenObj;
 }
