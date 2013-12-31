@@ -109,7 +109,7 @@ In Screens.js everything is based on the concept of screen. A screen is basicall
 				$(document).ready(function()
 				{
 					// Push the first screen on the stack
-					Screen.PushScreen('#mainpage', BasicScreen, jqmLoader)
+					Screen.PushScreen('#mainpage', BasicScreen, null, jqmLoader)
 				});
 			</script>
 		
@@ -205,8 +205,8 @@ And the **index.html**:
             	            	
 				$(document).ready(function()
 				{
-					Screen.PushScreen('#page0', ReceiverScreen, jqmLoader);
-					Screen.PushScreen('#senderpage', SenderScreen, jqmLoader);
+					Screen.PushScreen('#page0', ReceiverScreen, null, jqmLoader);
+					Screen.PushScreen('#senderpage', SenderScreen, null, jqmLoader);
 				});
 			</script>
 		

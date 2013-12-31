@@ -12,6 +12,6 @@ __CLASS__('Result1Screen', Screen,
             
     clickButton: function(sender)
     {
-        this.PushScreen('#page2', Result2Screen, jqmLoader)
+        this.PushScreen('#page2', Result2Screen, null, jqmLoader)
     }
 });

@@ -11,7 +11,7 @@ __CLASS__('Page2Screen', Screen,
     clickButton: function(sender)
     {
         alert("Page2 Button click = " + $(sender).text());
-        this.PushScreen('#page3', Page3Screen, jqmLoader);
+        this.PushScreen('#page3', Page3Screen, null, jqmLoader);
     },
     
 	clickButtonBack: function(sender)

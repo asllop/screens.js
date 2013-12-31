@@ -8,6 +8,6 @@ __CLASS__('Pageargs1Screen', Screen,
             
     clickButton: function(sender)
     {
-        this.PushScreen('#page2', Pageargs2Screen, jqmLoader, {transition: "slideup"});
+        this.PushScreen('#page2', Pageargs2Screen, null, jqmLoader, {transition: "slideup"});
     }
 });

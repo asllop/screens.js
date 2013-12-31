@@ -10,6 +10,6 @@ __CLASS__('Page1Screen', Screen,
     clickButton: function(sender)
     {
         alert("Page1 Button click = " + $(sender).text());
-        this.PushScreen('#page2', Page2Screen, jqmLoader)
+        this.PushScreen('#page2', Page2Screen, null, jqmLoader)
     }
 });
