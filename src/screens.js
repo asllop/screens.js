@@ -157,6 +157,11 @@ __CLASS__('Obj',
         __SEND_BROADCAST__(filter, message, true);
     },
     
+    SendMessage: function(filter, message)
+    {
+        return __SEND_MESSAGE__(filter, message);
+    },
+    
     FindReceiver: function(receiver)
     {
         return __FIND_RECEIVER__(receiver);
@@ -572,6 +577,25 @@ function __SEND_BROADCAST__(filter, message, massive)
     }
 }
 
+// Send message and return result
+function __SEND_MESSAGE__(filter, message)
+{
+    // Make a copy of the array to avoid problems when others change it
+    var arrCopy = window.BROADCAST_REGISTER_ARRAY.slice();
+    
+    for (var i = 0 ; i < arrCopy.length ; i++)
+    {
+        if (arrCopy[i].filter === filter)
+        {
+            // Execute the first ocurrence of 'filter' and return the result
+            return arrCopy[i].callback(message);
+        }
+    }
+    
+    return null;
+}
+
+// Return the receiver object for a certain receiver id
 function __FIND_RECEIVER__(receiver)
 {
     for (var i = 0 ; i < window.BROADCAST_REGISTER_ARRAY.length ; i++)
