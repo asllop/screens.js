@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <!-- JQuery is needed -->
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <!-- Screens.js library -->
+        <script src="../screens.js"></script>
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        
+        <style>
+            .container
+            {
+                padding-bottom: 10px;
+            }
+            
+            .btn-toolbar
+            {
+                padding-top: 10px;
+            }
+        </style>
+        
+        <script src="classes/PaintScreen.js"></script>
+        <script src="classes/WeightModalScreen.js"></script>
+        <script src="classes/ColorModalScreen.js"></script>
+
+        <script>
+
+            $(document).ready(function()
+            {
+                Screen.PushScreen('#paint-container', PaintScreen);
+            });
+            
+        </script>
+    </head>
+    
+    <body>
+
+        <div id='paint-container' class="container">
+
+            <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group">
+                    <button id="buttonColor" type="button" class="btn btn-default">Color</button>
+                    <button id="buttonWidth" type="button" class="btn btn-default">Line Width</button>
+                    <button id="buttonBackground" type="button" class="btn btn-default">Background</button>
+                </div>
+            </div>
+            
+            <div class="container"></div>
+            
+            <canvas id="canvas" style="border:1px solid #d3d3d3;">
+                Canvas is not supported by your browser.
+            </canvas>
+            
+            <div id="weightModal" class="modal fade">
+                <div class="modal-dialog" style="width: 300px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Line Weight: <i id="weightValue">0</i></h4>
+                        </div>
+                        <div class="modal-body">
+                        <!--
+                            <div id="progress-container" class="progress">
+                                <div id="progress" class="progress-bar" role="progressbar"></div>
+                            </div>
+                            -->
+                            <input id="slider" type="range" style="width: 100%;" min="1" max="50" step="1" value="1">
+                        </div>
+                        <div class="modal-footer">
+                            <button id="buttonOK" type="button" class="btn btn-primary">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="colorModal" class="modal fade">
+                <div class="modal-dialog" style="width: 300px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Color Selector</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Red:</p>
+                            <input id="redSlider" type="range" style="width: 100%;" min="0" max="255" step="1">
+                            <p>Green:</p>
+                            <input id="greenSlider" type="range" style="width: 100%;" min="0" max="255" step="1">
+                            <p>Blue:</p>
+                            <input id="blueSlider" type="range" style="width: 100%;" min="0" max="255" step="1">
+                            <div id="colorBox" style="width: 100%; height: 20px; margin-top: 20px;"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="buttonOK" type="button" class="btn btn-primary">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </body>
+</html>
