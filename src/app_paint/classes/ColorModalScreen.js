@@ -41,9 +41,7 @@ __CLASS__('ColorModalScreen', Screen,
     
     okClick: function(sender, e)
     {
-        this.Ref(this.Selector).modal("hide");
-        
-        this.SendOrderedBroadcast('SET_LINE_COLOR', this.color);
+        // To be Overwritten
     },
     
     setColor: function()

@@ -6,6 +6,7 @@ __CLASS__('PaintScreen', Screen,
     lastPos: null,
     lineWidth: 1,
     lineColor: { Red: 0, Green: 0, Blue: 0 },
+    backgroundColor: { Red: 255, Green: 255, Blue: 255 },
     
     OnLoad: function()
     {
@@ -25,9 +26,11 @@ __CLASS__('PaintScreen', Screen,
         
         this.RegisterReceiver(this.broadcastReceiverLineWidth, 'SET_LINE_WIDTH');
         this.RegisterReceiver(this.broadcastReceiverLineColor, 'SET_LINE_COLOR');
+        this.RegisterReceiver(this.broadcastReceiverBackgroundColor, 'SET_BACKGROUND_COLOR');
         
         this.changeLineWeight(this.lineWidth);
         this.changeStrokeColor(this.colorToString(this.lineColor));
+        this.changeBackgorundColor(this.colorToString(this.backgroundColor));
     },
     
     broadcastReceiverLineWidth: function(message)
@@ -43,7 +46,13 @@ __CLASS__('PaintScreen', Screen,
 	    this.lineColor = message;
 	    this.changeStrokeColor(this.colorToString(message));
     },
-    
+
+    broadcastReceiverBackgroundColor: function(message)
+	{
+	    this.backgroundColor = message;
+	    this.changeBackgorundColor(this.colorToString(message));
+    },
+        
     mouseDown: function(sender, event)
     {
         this.isPainting = true;
@@ -68,7 +77,7 @@ __CLASS__('PaintScreen', Screen,
     
     colorClick: function(sender, event)
     {
-        this.SetScreen('#colorModal', ColorModalScreen, this.lineColor);
+        this.SetScreen('#colorModal', LineColorScreen, this.lineColor);
     },
     
     widthClick: function(sender, event)
@@ -78,7 +87,7 @@ __CLASS__('PaintScreen', Screen,
     
     backClick: function(sender, event)
     {
-        console.log('Background');
+        this.SetScreen('#colorModal', BackgroundColorScreen, this.backgroundColor);
     },
     
     drawTram: function(x, y)
@@ -93,7 +102,7 @@ __CLASS__('PaintScreen', Screen,
     
     changeBackgorundColor: function(color)
     {
-        this.Ref('#canvas').css({ "background-color": "#" + color });
+        this.Ref('#canvas').css({ "background-color": color });
     },
     
     changeLineWeight: function(width)
