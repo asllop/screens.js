@@ -5,7 +5,7 @@ __CLASS__('ColorModalScreen', Screen,
     
     OnLoad: function(color)
     {
-        this.color = color;
+        this.color = this.Clone(color);
         
         this.Change(this.redChanged, '#redSlider');
         this.Change(this.greenChanged, '#greenSlider');
