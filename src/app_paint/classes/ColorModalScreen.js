@@ -46,10 +46,10 @@ __CLASS__('ColorModalScreen', Screen,
     
     setColor: function()
     {
-        $('#colorBox').css('background-color', this.colorToHex());
+        $('#colorBox').css('background-color', this.colorToString());
     },
     
-    colorToHex: function()
+    colorToString: function()
     {
         return "rgb(" + this.color.Red + "," + this.color.Green + "," + this.color.Blue + ")";
     }
