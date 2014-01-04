@@ -54,11 +54,11 @@ __CLASS__('ColorModalScreen', Screen,
     
     setColor: function()
     {
-        $('#colorBox').css('background-color', this.colorToString());
+        $('#colorBox').css('background-color', this.colorToString(this.color));
     },
     
-    colorToString: function()
+    colorToString: function(colorObj)
     {
-        return "rgba(" + this.color.Red + "," + this.color.Green + "," + this.color.Blue + "," + this.color.Alpha + ")";
+        return "rgba(" + colorObj.Red + "," + colorObj.Green + "," + colorObj.Blue + "," + colorObj.Alpha + ")";
     }
 });

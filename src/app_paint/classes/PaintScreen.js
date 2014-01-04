@@ -31,8 +31,8 @@ __CLASS__('PaintScreen', Screen,
         this.RegisterReceiver(this.broadcastReceiverBackgroundColor, 'SET_BACKGROUND_COLOR');
         
         this.changeLineWeight(this.lineWidth);
-        this.changeStrokeColor(this.colorToString(this.lineColor));
-        this.changeBackgorundColor(this.colorToString(this.backgroundColor));
+        this.changeStrokeColor(ColorModalScreen.colorToString(this.lineColor));
+        this.changeBackgorundColor(ColorModalScreen.colorToString(this.backgroundColor));
     },
     
     broadcastReceiverLineWidth: function(message)
@@ -46,13 +46,13 @@ __CLASS__('PaintScreen', Screen,
     broadcastReceiverLineColor: function(message)
 	{
 	    this.lineColor = message;
-	    this.changeStrokeColor(this.colorToString(message));
+	    this.changeStrokeColor(ColorModalScreen.colorToString(message));
     },
 
     broadcastReceiverBackgroundColor: function(message)
 	{
 	    this.backgroundColor = message;
-	    this.changeBackgorundColor(this.colorToString(message));
+	    this.changeBackgorundColor(ColorModalScreen.colorToString(message));
     },
         
     mouseDown: function(sender, event)
@@ -143,10 +143,5 @@ __CLASS__('PaintScreen', Screen,
     changeStrokeColor: function(color)
     {
         this.ctx.strokeStyle = color;
-    },
-    
-    colorToString: function(colorObj)
-    {
-        return "rgba(" + colorObj.Red + "," + colorObj.Green + "," + colorObj.Blue + "," + colorObj.Alpha + ")";
     }
 });
