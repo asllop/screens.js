@@ -2,6 +2,7 @@
 __CLASS__('PaintScreen', Screen,
 {
     ctx: null,
+    canvas: null,
     isPainting: false,
     lastPos: null,
     lineWidth: 1,
@@ -12,11 +13,11 @@ __CLASS__('PaintScreen', Screen,
     
     OnLoad: function()
     {
-        var canvas = this.Ref('#canvas')[0];
-        this.ctx = canvas.getContext("2d");
+        this.canvas = this.Ref('#canvas')[0];
+        this.ctx = this.canvas.getContext("2d");
         
-        canvas.width = this.Ref('#paint-container').width();
-        canvas.height = window.innerHeight - this.Ref('div.btn-toolbar').height() - 40;
+        this.canvas.width = this.Ref('#paint-container').width();
+        this.canvas.height = window.innerHeight - this.Ref('div.btn-toolbar').height() - 40;
         
         this.Ref('#canvas').mousedown(this.Callback(this.mouseDown));
         this.Ref('#canvas').mouseup(this.Callback(this.mouseUp));
@@ -60,7 +61,7 @@ __CLASS__('PaintScreen', Screen,
     {
         this.isPainting = true;
         
-        this.imgData = this.ctx.getImageData(0, 0, this.Ref('#canvas')[0].width, this.Ref('#canvas')[0].height);
+        this.imgData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
         this.addPointToList(event.offsetX, event.offsetY);
 
         return false;   // to avoid cursor changing when click over
@@ -70,7 +71,7 @@ __CLASS__('PaintScreen', Screen,
     {
         this.isPainting = false;
         
-        this.ctx.clearRect(0, 0, this.Ref('#canvas')[0].width, this.Ref('#canvas')[0].height);
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.putImageData(this.imgData, 0, 0);
         this.drawPointList();
     },
@@ -103,7 +104,7 @@ __CLASS__('PaintScreen', Screen,
 
     clearClick: function(sender, event)
     {
-        this.ctx.clearRect(0, 0, this.Ref('#canvas')[0].width, this.Ref('#canvas')[0].height);
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
     
     drawTram: function(x, y)
