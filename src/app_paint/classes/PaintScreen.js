@@ -60,6 +60,7 @@ __CLASS__('PaintScreen', Screen,
         this.isPainting = true;
         
         this.imgData = this.ctx.getImageData(0, 0, this.Ref('#canvas')[0].width, this.Ref('#canvas')[0].height);
+        this.addPointToList(event.offsetX, event.offsetY);
 
         return false;   // to avoid cursor changing when click over
     },
