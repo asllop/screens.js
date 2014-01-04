@@ -9,7 +9,6 @@ __CLASS__('AnotherClass', NewClass,
     {
         alert("Another " + this.salute + " " + name);
         
-        var superObj = this.Super();
-        superObj.foo(name);
+        this.Super('foo')(name);
     }
 });
