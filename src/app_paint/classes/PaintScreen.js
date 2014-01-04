@@ -5,8 +5,10 @@ __CLASS__('PaintScreen', Screen,
     isPainting: false,
     lastPos: null,
     lineWidth: 1,
-    lineColor: { Red: 0, Green: 0, Blue: 0 },
-    backgroundColor: { Red: 255, Green: 255, Blue: 255 },
+    lineColor: { Red: 0, Green: 0, Blue: 0, Alpha: 1 },
+    backgroundColor: { Red: 255, Green: 255, Blue: 255, Alpha: 1 },
+    pointList: [],
+    imgData: null,
     
     OnLoad: function()
     {
@@ -57,12 +59,18 @@ __CLASS__('PaintScreen', Screen,
     {
         this.isPainting = true;
         
+        this.imgData = this.ctx.getImageData(0, 0, this.Ref('#canvas')[0].width, this.Ref('#canvas')[0].height);
+
         return false;   // to avoid cursor changing when click over
     },
     
     mouseUp: function(sender, event)
     {
         this.isPainting = false;
+        
+        this.ctx.clearRect(0, 0, this.Ref('#canvas')[0].width, this.Ref('#canvas')[0].height);
+        this.ctx.putImageData(this.imgData, 0, 0);
+        this.drawPointList();
     },
 
     mouseMove: function(sender, event)
@@ -70,6 +78,7 @@ __CLASS__('PaintScreen', Screen,
         if (this.isPainting)
         {
             this.drawTram(event.offsetX, event.offsetY);
+            this.addPointToList(event.offsetX, event.offsetY);
         }
         
         this.lastPos = { X: event.offsetX, Y: event.offsetY };
@@ -89,7 +98,7 @@ __CLASS__('PaintScreen', Screen,
     {
         this.SetScreen('#colorModal', BackgroundColorScreen, this.backgroundColor);
     },
-    
+
     drawTram: function(x, y)
     {
         this.ctx.beginPath();
@@ -98,6 +107,27 @@ __CLASS__('PaintScreen', Screen,
         this.ctx.moveTo(this.lastPos.X, this.lastPos.Y);
         this.ctx.lineTo(x, y);
         this.ctx.stroke();
+    },
+    
+    addPointToList: function(x, y)
+    {
+        this.pointList.push({ X: x, Y: y });
+    },
+    
+    drawPointList: function()
+    {
+        this.ctx.beginPath();
+        this.ctx.lineJoin = "round";
+        this.ctx.lineCap = "round";
+
+        for (var i = 0 ; i < this.pointList.length ; i++)
+        {
+            this.ctx.lineTo(this.pointList[i].X, this.pointList[i].Y);
+        }
+        
+        this.ctx.stroke();
+        
+        this.pointList = [];
     },
     
     changeBackgorundColor: function(color)
@@ -117,6 +147,6 @@ __CLASS__('PaintScreen', Screen,
     
     colorToString: function(colorObj)
     {
-        return "rgb(" + colorObj.Red + "," + colorObj.Green + "," + colorObj.Blue + ")";
+        return "rgba(" + colorObj.Red + "," + colorObj.Green + "," + colorObj.Blue + "," + colorObj.Alpha + ")";
     }
 });

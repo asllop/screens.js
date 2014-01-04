@@ -1,7 +1,7 @@
 
 __CLASS__('ColorModalScreen', Screen,
 {
-    color: { Red: 0, Green: 0, Blue: 0 },
+    color: { Red: 0, Green: 0, Blue: 0, Alpha: 1 },
     
     OnLoad: function(color)
     {
@@ -10,11 +10,13 @@ __CLASS__('ColorModalScreen', Screen,
         this.Change(this.redChanged, '#redSlider');
         this.Change(this.greenChanged, '#greenSlider');
         this.Change(this.blueChanged, '#blueSlider');
+        this.Change(this.alphaChanged, '#alphaSlider');
         this.Click(this.okClick, '#buttonOK');
         
         this.Ref('#redSlider').val(this.color.Red);
         this.Ref('#greenSlider').val(this.color.Green);
         this.Ref('#blueSlider').val(this.color.Blue);
+        this.Ref('#alphaSlider').val(this.color.Alpha * 100);
         
         this.setColor();
         
@@ -38,7 +40,13 @@ __CLASS__('ColorModalScreen', Screen,
         this.color.Blue = parseInt($(sender).val());
         this.setColor();
     },
-    
+
+    alphaChanged: function(sender, e)
+    {
+        this.color.Alpha = parseFloat($(sender).val()) / 100.0;
+        this.setColor();
+    },
+        
     okClick: function(sender, e)
     {
         // To be Overwritten
@@ -51,6 +59,6 @@ __CLASS__('ColorModalScreen', Screen,
     
     colorToString: function()
     {
-        return "rgb(" + this.color.Red + "," + this.color.Green + "," + this.color.Blue + ")";
+        return "rgba(" + this.color.Red + "," + this.color.Green + "," + this.color.Blue + "," + this.color.Alpha + ")";
     }
 });
