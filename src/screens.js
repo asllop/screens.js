@@ -64,7 +64,7 @@ function __CONTEXT_CLASS__(context, name, obj1, obj2)
             return newObj;
         };
         
-        obj1.Super = function()
+        obj1.Super = function(elementName)
         {
             var superClass = this.CLASS_TYPE.last();
             
@@ -75,11 +75,23 @@ function __CONTEXT_CLASS__(context, name, obj1, obj2)
             else
             {
                 var object = __CLONE__(eval(superClass));
-                delete object.New;
+
+                for (var attr in object)
+                {
+                    if (attr === elementName)
+                    {
+                        if (typeof(object[attr]) === 'function')
+                        {
+                            return $.proxy(object[attr], this);
+                        }
+                        else
+                        {
+                            return object[attr];
+                        }
+                    }
+                }
                 
-                __MERGE__(this, object);
-                
-                return object;
+                return null;
             }
         };
         

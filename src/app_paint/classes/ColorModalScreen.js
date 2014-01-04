@@ -49,7 +49,7 @@ __CLASS__('ColorModalScreen', Screen,
         
     okClick: function(sender, e)
     {
-        // To be Overwritten
+        this.Ref(this.Selector).modal("hide");
     },
     
     setColor: function()
