@@ -25,6 +25,7 @@ __CLASS__('PaintScreen', Screen,
         this.Click(this.colorClick, '#buttonColor');
         this.Click(this.widthClick, '#buttonWidth');
         this.Click(this.backClick, '#buttonBackground');
+        this.Click(this.clearClick, '#buttonClear')
         
         this.RegisterReceiver(this.broadcastReceiverLineWidth, 'SET_LINE_WIDTH');
         this.RegisterReceiver(this.broadcastReceiverLineColor, 'SET_LINE_COLOR');
@@ -100,6 +101,11 @@ __CLASS__('PaintScreen', Screen,
         this.SetScreen('#colorModal', BackgroundColorScreen, this.backgroundColor);
     },
 
+    clearClick: function(sender, event)
+    {
+        this.ctx.clearRect(0, 0, this.Ref('#canvas')[0].width, this.Ref('#canvas')[0].height);
+    },
+    
     drawTram: function(x, y)
     {
         this.ctx.beginPath();
