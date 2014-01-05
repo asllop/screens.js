@@ -139,6 +139,11 @@ __CLASS__('Obj',
     	__MERGE__(org, dest);
 	},
 	
+    Copy: function(org, dest)
+	{
+    	__COPY__(org, dest);
+	},
+	
     LoadClass: function(name, baseurl, readyCallBack)
     {
         return __LOAD_CLASS__(name, baseurl, this, readyCallBack);
@@ -337,19 +342,28 @@ function __DESERIALIZE__(obj)
     return copy;
 }
 
-// Copy existing propierties of org object to dest object
+// Merge propierties of org object to dest object
 function __MERGE__(org, dest)
 {
     for (var attr in org)
     {
-        if (typeof(org[attr]) !== 'function')
+        if (attr != 'CLASS_NAME' && attr != 'CLASS_TYPE' && attr != '__proto__')
         {
-            if (attr != 'CLASS_NAME' && attr != 'CLASS_TYPE' && attr != '__proto__')
+            dest[attr] = org[attr];
+        }
+    }
+}
+
+// Copy propierties of org object to dest object
+function __COPY__(org, dest)
+{
+    for (var attr in org)
+    {
+        if (attr != 'CLASS_NAME' && attr != 'CLASS_TYPE' && attr != '__proto__')
+        {
+            if (dest[attr] !== undefined)
             {
-                if (dest[attr] !== undefined)
-                {
-                    dest[attr] = org[attr];
-                }
+                dest[attr] = org[attr];
             }
         }
     }
