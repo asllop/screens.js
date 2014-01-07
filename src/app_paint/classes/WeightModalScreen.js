@@ -24,6 +24,6 @@ __CLASS__('WeightModalScreen', Screen,
     {
         this.Ref(this.Selector).modal("hide");
         
-        this.SendOrderedBroadcast('SET_LINE_WIDTH', $("#slider").val());
+        this.SendOrderedBroadcast('SET_LINE_WIDTH', this.Ref("#slider").val());
     }
 });
