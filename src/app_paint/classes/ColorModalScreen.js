@@ -2,10 +2,14 @@
 __CLASS__('ColorModalScreen', Screen,
 {
     color: { Red: 0, Green: 0, Blue: 0, Alpha: 1 },
+    broadcastFilter: "",
+    modalTitle: "Select Color",
     
     OnLoad: function(color)
     {
         this.color = this.Clone(color);
+        
+        this.Ref('#modalTitle').text(this.modalTitle);
         
         this.Change(this.redChanged, '#redSlider');
         this.Change(this.greenChanged, '#greenSlider');
@@ -50,6 +54,7 @@ __CLASS__('ColorModalScreen', Screen,
     okClick: function(sender, e)
     {
         this.Ref(this.Selector).modal("hide");
+        this.SendOrderedBroadcast(this.broadcastFilter, this.color);
     },
     
     setColor: function()

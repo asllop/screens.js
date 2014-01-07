@@ -1,10 +1,11 @@
 
 __CLASS__('LineColorScreen', ColorModalScreen,
 {
-    okClick: function(sender, e)
+    OnLoad: function(color)
     {
-        this.Super('okClick')(sender, e);
-        
-        this.SendOrderedBroadcast('SET_LINE_COLOR', this.color);
+        this.modalTitle = 'Select Line Color';
+        this.broadcastFilter = 'SET_LINE_COLOR';
+     
+        this.Super('OnLoad')(color);
     }
 });

@@ -1,10 +1,11 @@
 
 __CLASS__('BackgroundColorScreen', ColorModalScreen,
 {
-    okClick: function(sender, e)
+    OnLoad: function(color)
     {
-        this.Super('okClick')(sender, e);
-        
-        this.SendOrderedBroadcast('SET_BACKGROUND_COLOR', this.color);
+        this.modalTitle = 'Select Background Color';
+        this.broadcastFilter = 'SET_BACKGROUND_COLOR';
+     
+        this.Super('OnLoad')(color);
     }
 });
