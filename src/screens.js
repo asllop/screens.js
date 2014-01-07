@@ -1,6 +1,6 @@
 /* 
  * Screens.js - v0.9b
- * Copyright (C) 2013 Andreu Santaren Llop
+ * Copyright (C) 2013-2014 Andreu Santaren Llop
  */
 
 // Init Screens.js library
@@ -75,6 +75,11 @@ function __CONTEXT_CLASS__(context, name, obj1, obj2)
             else
             {
                 var object = __CLONE__(eval(superClass));
+                
+                if (elementName == null)
+                {
+                    return object;
+                }
 
                 for (var attr in object)
                 {
@@ -86,7 +91,7 @@ function __CONTEXT_CLASS__(context, name, obj1, obj2)
                         }
                         else
                         {
-                            return object[attr];
+                            return null;
                         }
                     }
                 }
