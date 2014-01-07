@@ -59,7 +59,7 @@ __CLASS__('ColorModalScreen', Screen,
     
     setColor: function()
     {
-        $('#colorBox').css('background-color', this.colorToString(this.color));
+        this.Ref('#colorBox').css('background-color', this.colorToString(this.color));
     },
     
     colorToString: function(colorObj)
