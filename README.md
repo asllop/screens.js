@@ -306,6 +306,10 @@ Basic screen navigation
 
 Screen navigation using menus.
 
+#### bootstrap_examples/example03.html
+
+Delegation.
+
 #### app_calculator
 
 Application example: calculator with JQM and Bootstrap UI.

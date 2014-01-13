@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <!-- JQuery is needed -->
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <!-- Screens.js library -->
+        <script src="../screens.js"></script>
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        
+        <script src="classes/DelegateScreen.js"></script>
+        <script src="classes/BarClickScreen.js"></script>
+        <script src="classes/BarDragScreen.js"></script>
+        
+        <script>
+            $(document).ready(function()
+            {
+                Screen.PushScreen('#page1', DelegateScreen);
+            });
+        </script>
+    </head>
+    
+    <body style="padding-top: 60px;">
+    	
+    	<div id='page1' class="container">
+
+            <h2>Click Bar</h1>
+            
+            <div id="progress-container1" class="progress">
+                <div id="progress1" class="progress-bar" role="progressbar"></div>
+            </div>
+            
+            <h2>Drag Bar</h1>
+            
+            <div id="progress-container2" class="progress">
+                <div id="progress2" class="progress-bar progress-bar-success" role="progressbar"></div>
+            </div>
+
+        </div>
+
+    </body>
+</html>
