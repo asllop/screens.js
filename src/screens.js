@@ -1,5 +1,5 @@
 /* 
- * Screens.js - v0.9b
+ * Screens.js - v1.0
  * Copyright (C) 2013-2014 Andreu Santaren Llop
  */
 
