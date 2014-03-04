@@ -84,7 +84,7 @@ The resulting class contains all methods and propierties of the original NewClas
 
 ### 2. Model View Controller
 
-In Screens.js everything is based on the concept of screen. A screen is basically an instance of the **Screen** class and a piece of HTML working together. Let's see a very basic screen. First the HTML part, **index.html**:
+In Screens.js everything is based on the concept of screen. A screen is basically an instance of the **Screen** class and a piece of HTML working together. It's analogous to the concepto of Activity in Android or ViewController in iOS. Let's see a very basic screen. First the HTML part, **index.html**:
 
 	<!DOCTYPE html>
 	<html>
