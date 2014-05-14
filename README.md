@@ -4,7 +4,7 @@
 
 ### Overview
 
-Screens.js is a Javascript library that offers full featured Object Oriented Programming, Model View Controller and Broadcast Messaging. It is based on JQuery and supports almost any UI library as a graphical backend, just like JQuery Mobile, Bootstrap or JQuery UI.
+Screens.js is a Javascript library that offers full featured Object Oriented Programming, Model View Controller and Broadcast Messaging. It is based on JQuery and supports almost any UI library as a backend, just like JQuery Mobile, Bootstrap or JQuery UI.
 
 ### Contents
 
