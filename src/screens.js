@@ -56,7 +56,7 @@ function __CONTEXT_CLASS__(context, name, obj1, obj2)
             
             delete newObj.New;
 
-            newObj.OBJECT_UNIQUE_KEY = Math.floor(Math.random() * 10000000000000000).toString();
+            newObj.OBJECT_UNIQUE_KEY = new Date().getTime().toString() + Math.floor(Math.random() * 10000000000000000).toString();
             
             // Call constructor
             newObj['Init'].apply(newObj, arguments);
