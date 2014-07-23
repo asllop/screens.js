@@ -1,3 +1,7 @@
+- Hold screen DOM state after a push/pop instead of calling loader again.
+
 - Create a tutorial and API doc.
 
 - Recursive serialize/deserialize to allow classes to contain complex objects (with functions, objects, etc).
+
+
