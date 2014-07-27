@@ -187,7 +187,24 @@ __CLASS__('Obj',
     FindReceiver: function(receiver)
     {
         return __FIND_RECEIVER__(receiver);
-    }
+    },
+	
+    Callback: function(callback)
+    {
+        return __CALLBACK__(this, callback);
+    },
+	
+	ClassType: function(className)
+	{
+		if (className != null)
+		{
+			return this.CLASS_NAME == className;
+		}
+		else
+		{
+			return this.CLASS_NAME;
+		}
+	}
 });
 
 // Base class for screens
@@ -242,11 +259,6 @@ __CLASS__('Screen', Obj,
     Unbrand: function(selector)
     {
 	    __UNBRAND__(selector);
-    },
-            
-    Callback: function(callback)
-    {
-        return __CALLBACK__(this, callback);
     },
 
     Ref: function(selector)
