@@ -37,7 +37,7 @@ And use it on a simple **index.html** file:
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<!-- JQuery is needed -->
+			<!-- JQuery is the basic dependency -->
 			<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 			
 			<!-- Screens.js library -->
@@ -89,7 +89,7 @@ In Screens.js everything is based on the concept of screen. A screen is basicall
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<!-- JQuery is needed -->
+			<!-- JQuery library -->
         	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
 	        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     	    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
@@ -185,7 +185,7 @@ And the **index.html**:
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<!-- JQuery is needed -->
+			<!-- JQuery library -->
         	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
 	        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     	    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
