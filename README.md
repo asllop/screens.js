@@ -1,3 +1,5 @@
+**ATTENTION: Screens.js development has been abandoned. Since 2012, when I started working on it, multiple good libraries and JS compilers appeared making Screens.js unnecessary. Anyway it's probably broken due to the changes in JQuery since 2015, when the library was updated for the last time.**
+
 # Screens.js
 
 *Real OOP, MVC and Messaging for Javascript.*
